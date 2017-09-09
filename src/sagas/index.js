@@ -3,7 +3,7 @@ import {request} from '../api';
 import {searchRequest, searchResult, searchFailed} from '../actions';
 import {SEARCH_REQUEST} from '../actions/types';
 
-function requestSearch* (action){
+function* requestSearch (action){
 	try{
 		const results = yield request(action.payload);
 		yield put(searchResult(results));
@@ -12,8 +12,8 @@ function requestSearch* (action){
 	}
 }
 
-function searchSaga*(){
-	yield takeEvery(SEARCH_REQUEST, requestSearch);
+function* searchSaga(){
+	yield takeLatest(SEARCH_REQUEST, requestSearch);
 }
 
 export default searchSaga;

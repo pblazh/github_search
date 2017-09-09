@@ -2,7 +2,6 @@ import { SEARCH_REQUEST, SEARCH_RESULT } from '../actions/types'
 
 const searchRequestReducer = function(state = '', action) {
 	if(action.type === SEARCH_REQUEST){
-	console.log( action.type, state);
 	return action.payload
 		? action.payload
 		: state;
@@ -12,7 +11,6 @@ const searchRequestReducer = function(state = '', action) {
 
 const searchResultReducer = function(state = '', action) {
 	if(action.type === SEARCH_RESULT){
-	console.log( action.type, state);
 	return action.payload
 		? action.payload
 		: state;
