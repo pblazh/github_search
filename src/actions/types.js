@@ -1,0 +1,3 @@
+export const SEARCH_REQUEST = 'SEARCH_REQUEST'
+export const SEARCH_RESULT = 'SEARCH_RESULT'
+export const SEARCH_FAILED = 'SEARCH_FAILED'
