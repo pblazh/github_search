@@ -1,9 +1,11 @@
-import { combineReducers } from 'redux'
-import {searchRequestReducer, searchResultReducer} from './search_reducer'
+import { combineReducers } from 'redux';
+import { searchRequestReducer, searchResultReducer, ownersReducer, filterReducer } from './SearchReducer';
 
 const rootReducer = combineReducers({
-  search: searchRequestReducer,
-  result: searchResultReducer
-})
+	filters: filterReducer,
+	owners: ownersReducer,
+	searchRequest: searchRequestReducer,
+	foundRepositories: searchResultReducer,
+});
 
-export default rootReducer
+export default rootReducer;
