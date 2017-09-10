@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Score from './Score';
 import DateValue from './DateValue';
 import Loading from './Loading';
+// eslint-disable-next-line no-unused-vars
+import style from '../stylesheets/App-repository.css';
 
 const RepositoryInfo = ({repository}) => {
 	const rep = Object.assign({
@@ -11,16 +13,20 @@ const RepositoryInfo = ({repository}) => {
 
 	return repository
 		? (
-			<section>
-				<h3>{ rep.name }</h3>
-				<section>{ rep.language }</section>
-				{rep.score && <Score score={ rep.score }/>}
+			<section className='App-repository'>
+				<h2>{ rep.name }</h2>
 				<aside>
-					<DateValue what={'Created by ' + rep.ownerName + ' on: '} date={repository.createdAt}/>
-					<DateValue what='Last updated on: ' date={repository.updatedAt}/>
-					<section>{ rep.description }</section>
+					<section>Language: { rep.language }</section>
+					<section className='App-RepositoryScore'>
+					{rep.score && <Score score={ rep.score }/>}
+					</section>
+					<section className='App-RepositoryDates'>
+						<DateValue what={'Created by ' + rep.ownerName + ' on: '} date={repository.createdAt}/>
+						<DateValue what='Last updated on: ' date={repository.updatedAt}/>
+					</section>
 				</aside>
-				<a href={ rep.url }>{ rep.url }</a>
+					<section className='App-repositoryDescription'>{ rep.description }</section>
+				<a className='App-button' href={ rep.url } target='blank'>{ rep.url }</a>
 			</section>
 		)
 		: <Loading/>;

@@ -8,7 +8,6 @@ import HomeContainer from './containers/HomeContainer';
 import SearchContainer from './containers/SearchContainer';
 import RepositoryContainer from './containers/RepositoryContainer';
 
-//import routes from './routes';
 import reducers from './reducers';
 import searchSaga from './sagas';
 const initialState = require('./data/initial-state');

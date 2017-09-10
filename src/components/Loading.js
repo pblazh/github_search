@@ -1,6 +1,7 @@
 import React from 'react';
 
 const outerStyle = {
+	display: 'inline-block',
 	positon: 'relative',
 	width: 40,
 	height: 40,

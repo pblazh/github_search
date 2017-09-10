@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { Link } from 'react-router-dom'
+import {where} from '../util';
 import {
 	searchRequest,
 	filterBy,
 	selectRepository,
 } from '../actions';
+import Footer from '../components/Footer';
 import FilterField from '../components/FilterField';
 import SearchList from '../components/SearchList';
 import SearchItem from '../components/SearchItem';
@@ -15,14 +16,16 @@ import Loading from '../components/Loading';
 import { Clickable } from '../components/HOC';
 import { withRouter } from 'react-router'
 
-const SearchContainer = ({history, repositories, filters, owners, onSearch, onFilter, onSelect}) => {
-	console.log( repositories);
-	return (
-	<div>
-		<h2>Search repository</h2>
-		<RequestForm onChange={onSearch} />
-		<hr/>
-		{filters && <FilterField what='filter by owner' items={owners} onChange={onFilter}/>}
+const SearchContainer = ({history, repositories, search, filters, owners, onSearch, onFilter, onSelect}) => (
+	<section className='App-main'>
+		<header>
+			<RequestForm onChange={onSearch} search={search}>
+				{filters && <FilterField what='filter by owner'
+					selected={where({id: filters.ownerId}, owners).pop()}
+					items={owners} onChange={onFilter}/>}
+			</RequestForm>
+		</header>
+		<main>
 		{
 			repositories
 			? <SearchList filters={filters}
@@ -30,29 +33,34 @@ const SearchContainer = ({history, repositories, filters, owners, onSearch, onFi
 						  component={Clickable(SearchItem, history, onSelect)}/>
 			: <Loading/>
 		}
-		<Link to='/'>Home</Link>
-	</div>
+		</main>
+		<Footer buttons={[
+			{name: 'home', to:'/'},
+		]}/>
+	</section>
 );
-}
 
 SearchContainer.propTypes = {
 	history: PropTypes.object.isRequired,
 	repositories: PropTypes.array,
-	filters: PropTypes.array,
+	filters: PropTypes.object,
 	owners: PropTypes.array,
 	onSearch: PropTypes.func.isRequired,
 	onFilter: PropTypes.func,
 	onSelect: PropTypes.func,
 };
 
-const mapState2Props = (state) => (
+const mapState2Props = (state) => {
+	console.log( state);
+	return (
 	{
-		search: state.search,
+		search: state.searchRequest,
 		repositories: state.repositories,
 		owners: state.owners,
 		filters: state.filters,
 	}
 );
+}
 
 const mapDispatch2Props = (dispatch) => (
 	{

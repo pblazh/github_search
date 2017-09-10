@@ -3,7 +3,7 @@ import '../stylesheets/main.css'
 
 export default (props) => (
 	<div className='appContainer'>
-		<h1>Github search</h1>
+		<header className='App-header'>Github search</header>
 		{props.children}
 	</div>
 )

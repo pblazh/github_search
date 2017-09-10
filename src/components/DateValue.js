@@ -8,10 +8,10 @@ const date2string = date => [
 ].join('.');
 
 const DateValue = ({what, date}) => (
-	<section>
-		<span>{what} </span>
-		<span>{date2string(new Date(date))}</span>
-	</section>
+	<dl>
+		<dt>{what} </dt>
+		<dd>{date2string(new Date(date))}</dd>
+	</dl>
 )
 
 DateValue.propTypes = {

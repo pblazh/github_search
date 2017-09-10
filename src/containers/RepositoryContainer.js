@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom'
 import RepositoryInfo from '../components/RepositoryInfo';
+import Footer from '../components/Footer';
 import {
 	infoRequest,
 } from '../actions';
@@ -15,12 +15,15 @@ class RepositoryContainer extends(Component){
 	}
 	render(){
 		return (
-			<div>
-				<h2>Search text</h2>
-				<RepositoryInfo repository={this.props.repository} />
-				<Link to='/'>Home</Link>
-				<Link to='/search'>Search</Link>
-			</div>
+			<section className='App-main'>
+				<main>
+					<RepositoryInfo repository={this.props.repository} />
+				</main>
+				<Footer buttons={[
+					{name: 'home', to:'/'},
+					{name: 'search', to:'/search'},
+				]}/>
+			</section>
 		);
 	}
 }

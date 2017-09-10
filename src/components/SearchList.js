@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-const where = (what, list) =>
-	list.filter(item =>
-		Object.keys(what).reduce((pass, key) =>
-			pass && item[key] === what[key], true));
+import {where} from '../util';
+// eslint-disable-next-line no-unused-vars
+import style from '../stylesheets/App-searchlist.css';
 
 const SearchList = ({filters={}, items, component}) => (
-	<ul>
+	<section className='App-searchlist'>
 		{where(filters, items).map(item => (
-			<li key={item.id}>{component({item})}</li>
+			<div  className='App-searchlistItem' key={item.id}>{component({item})}</div>
 		))}
-	</ul>
+	</section>
 );
 
 SearchList.propTypes = {

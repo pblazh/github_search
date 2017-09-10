@@ -4,6 +4,8 @@ import {partial} from 'lodash/fp';
 import {debounce} from 'lodash-fp';
 import FilterField from './FilterField';
 import SearchField from './SearchField';
+// eslint-disable-next-line no-unused-vars
+import style from '../stylesheets/App-requestForm.css';
 
 const languages = [
 	'javaScript',
@@ -20,10 +22,13 @@ export default class RequestForm extends Component{
 		this.onQ = partial(this.onFieldChange, ['q']).bind(this);
 		this.onChange = debounce(1000, this.onChange).bind(this);
 
-		this.state = {
-			language: null,
-			q: null,
-		}
+		this.state = Object.assign(
+			{
+				language: null,
+				q: '',
+			},
+			this.props.search
+		);
 	}
 	onChange(){
 		this.props.onChange(this.state);
@@ -34,15 +39,21 @@ export default class RequestForm extends Component{
 			[field]: value,
 		}, () => this.onChange(this.state));
 	}
+
 	render (){
 		return(
-			<section>
-				<FilterField what='language'
+			<section className='App-requestform'>
+				<FilterField className='App-requestformFilter'
+							 what='language'
 							 items={languages}
+							 selected={this.state.language}
 							 onChange={this.onLanguage}/>
 
-				<SearchField value={this.state.q || ''}
+				<SearchField className='App-requestformFilter'
+							 value={this.state.q || ''}
 							 onChange={this.onQ}/>
+
+				<aside>{this.props.children}</aside>
 			</section>
 		);
 	}
