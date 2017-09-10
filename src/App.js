@@ -5,8 +5,8 @@ import createSagaMiddleware from 'redux-saga';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import AppContainer from './containers/AppContainer';
 import HomeContainer from './containers/HomeContainer';
-import SearchRepositoryContainer from './containers/SearchRepositoryContainer';
-import SearchTextContainer from './containers/SearchTextContainer';
+import SearchContainer from './containers/SearchContainer';
+import RepositoryContainer from './containers/RepositoryContainer';
 
 //import routes from './routes';
 import reducers from './reducers';
@@ -20,11 +20,11 @@ export default (props) => (
 	<Provider store={store}>
 		<Router>
 			<AppContainer>
-	<Switch>
+			<Switch>
 				<Route exact path='/' component={HomeContainer} />
-				<Route exact path='/repository' component={SearchRepositoryContainer} />
-				<Route path='/:repositoryId' component={SearchTextContainer} />
-	</Switch>
+				<Route exact path='/search' component={SearchContainer} />
+				<Route path='/:repository' component={RepositoryContainer} />
+			</Switch>
 			</AppContainer>
 		</Router>
 	</Provider>

@@ -1,9 +1,20 @@
 import React from 'react';
+import DateValue from './DateValue';
+import PropTypes from 'prop-types';
 
-export default ({item, onSelect}) => (
+const SearchItem = ({item, onSelect=()=>{}}) => (
 	<section onClick={onSelect}>
 		<h3>{item.name}</h3>
-		<h4>{item.ownerName}</h4>
-		{item.description && item.description}
+		<div>{item.language}</div>
+
+		<DateValue what='created' date={item.createdAt}/>
+		<DateValue what='updated' date={item.updatedAt}/>
 	</section>
 );
+
+SearchItem.propTypes = {
+	item: PropTypes.object.isRequired,
+	onSelect: PropTypes.func,
+};
+
+export default SearchItem;

@@ -1,14 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class SearchField extends Component{
-	render(){
-		return (
-			<input type='text'
-				onChange={(evt) => this.props.onChange(evt.target.value)}
-				value={this.props.value}
-				placeholder='search here'/>
-		);
-	}
-}
+const SearchField = ({onChange, value=''}) => (
+	<input type='text'
+		onChange={(evt) => onChange(evt.target.value)}
+		value={value}
+		placeholder='search here'/>
+);
+
+SearchField.propTypes = {
+	value: PropTypes.string,
+	onChange: PropTypes.func.isRequired,
+};
 
 export default SearchField;

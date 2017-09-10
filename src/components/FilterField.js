@@ -1,10 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default ({items, onChange}) => (
-	<select onChange={(evt) => onChange(parseInt(evt.target.value, 10))}>
-		<option key={0} value={0}>All</option>
-		{items.map(item =>
-			(<option key={item.id} value={item.id}>{item.name}</option>)
-		)}
-	</select>
+const FilterField = ({what='', items, onChange}) => (
+	<label>
+		<span>{what} </span>
+		<select onChange={(evt) => onChange(items[parseInt(evt.target.value, 10)])}>
+			<option key={0} value={null}>Any</option>
+			{items.map((item, index) =>
+				(<option key={JSON.stringify(item)} value={index}>{item.name || item}</option>)
+			)}
+		</select>
+	</label>
 );
+
+FilterField.propTypes = {
+	what: PropTypes.string,
+	items: PropTypes.array.isRequired,
+	onChange: PropTypes.func.isRequired,
+};
+
+export default FilterField;

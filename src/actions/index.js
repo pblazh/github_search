@@ -4,7 +4,9 @@ import {
 	SEARCH_FAILED,
 	OWNERS_RESULT,
 	FILTER_BY,
-	SELECT_REPOSITORY
+	SELECT_REPOSITORY,
+	INFO_REQUEST,
+	REDIRECT,
 } from './types'
 
 function action(type, payload) {
@@ -20,3 +22,5 @@ export const searchFailed = (payload) => action(SEARCH_FAILED, payload);
 export const ownersResult = (payload) => action(OWNERS_RESULT, payload);
 export const filterBy = (payload) => action(FILTER_BY, payload);
 export const selectRepository = (payload) => action(SELECT_REPOSITORY, payload);
+export const infoRequest = (payload) => action(INFO_REQUEST, payload);
+export const redirect = (payload) => action(REDIRECT, payload);

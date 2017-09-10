@@ -5,10 +5,10 @@ import {
   Link
 } from 'react-router-dom'
 
-export default (props) => (
+export default () => (
 	<section>
 		<img src={logo} className="App-logo" alt="logo" />
 		<p>text</p>
-		<Link to='/repository'>Search</Link>
+		<Link to='/search'>Search</Link>
 	</section>
 );
