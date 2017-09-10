@@ -2,7 +2,7 @@
   "name": "gitsearch",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://pblazh.github.io/github_search/",
+  "homepage": "https://pblazh.github.io/github_search/",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "normalize.css": "^7.0.0",

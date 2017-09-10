@@ -53,7 +53,8 @@ function* infoSaga(){
 
 function* redirectSaga(){
 	yield takeLatest(REDIRECT, action => {
-		document.location = action.payload;
+		console.log( '--->', action);
+//		document.location = action.payload;
 	});
 }
 

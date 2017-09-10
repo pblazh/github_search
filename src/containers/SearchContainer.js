@@ -50,9 +50,7 @@ SearchContainer.propTypes = {
 	onSelect: PropTypes.func,
 };
 
-const mapState2Props = (state) => {
-	console.log( state);
-	return (
+const mapState2Props = (state) => (
 	{
 		search: state.searchRequest,
 		repositories: state.repositories,
@@ -60,7 +58,6 @@ const mapState2Props = (state) => {
 		filters: state.filters,
 	}
 );
-}
 
 const mapDispatch2Props = (dispatch) => (
 	{

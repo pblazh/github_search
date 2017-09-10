@@ -15,9 +15,11 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducers, initialState, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(searchSaga);
 
+const mountPoint = process.env.NODE_ENV === 'production' ? '/github_search' : '/';
+
 export default (props) => (
 	<Provider store={store}>
-		<Router>
+		<Router basename={mountPoint}>
 			<AppContainer>
 			<Switch>
 				<Route exact path='/' component={HomeContainer} />
