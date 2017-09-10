@@ -9,6 +9,6 @@ export default (props) => (
 	<section>
 		<img src={logo} className="App-logo" alt="logo" />
 		<p>text</p>
-		<Link to='/search'>Search</Link>
+		<Link to='/repository'>Search</Link>
 	</section>
 );

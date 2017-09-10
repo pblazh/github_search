@@ -2,7 +2,10 @@
 import { put, takeLatest, takeEvery, all } from 'redux-saga/effects'
 import * as api from '../api';
 import {searchResult, searchFailed, ownersResult} from '../actions';
-import {SEARCH_REQUEST, SEARCH_RESULT} from '../actions/types';
+import {
+	SEARCH_REQUEST,
+	SEARCH_RESULT,
+} from '../actions/types';
 
 function* requestSearch (action){
 	try{
@@ -28,6 +31,6 @@ function* ownersSaga(){
 export default function* rootSaga() {
   yield all([
     searchSaga(),
-    ownersSaga()
+    ownersSaga(),
   ])
 }

@@ -2,10 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { Route, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import AppContainer from './containers/AppContainer';
 import HomeContainer from './containers/HomeContainer';
-import SearchContainer from './containers/SearchContainer';
+import SearchRepositoryContainer from './containers/SearchRepositoryContainer';
+import SearchTextContainer from './containers/SearchTextContainer';
 
 //import routes from './routes';
 import reducers from './reducers';
@@ -19,8 +20,11 @@ export default (props) => (
 	<Provider store={store}>
 		<Router>
 			<AppContainer>
+	<Switch>
 				<Route exact path='/' component={HomeContainer} />
-				<Route path='/search' component={SearchContainer} />
+				<Route exact path='/repository' component={SearchRepositoryContainer} />
+				<Route path='/:repositoryId' component={SearchTextContainer} />
+	</Switch>
 			</AppContainer>
 		</Router>
 	</Provider>

@@ -1,6 +1,7 @@
 {
 	"owners": [],
 	"searchRequest": "",
-	"foundRepositories": [],
-	"filters": []
+	"repositories": [],
+	"filters": [],
+	"repository": null
 }

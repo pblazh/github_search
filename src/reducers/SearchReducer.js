@@ -31,6 +31,11 @@ const ownersReducer = (state = [], action) => {
 	}
 	return state;
 }
+
+const idReducer = (state=null, action) => action.payload
+									? action.payload
+									: state;
+
 const filterReducer = requestReducer(FILTER_BY);
 const searchRequestReducer = requestReducer(SEARCH_REQUEST);
 const searchResultReducer = resultReducer(SEARCH_REQUEST, SEARCH_RESULT);
@@ -40,4 +45,5 @@ export {
 	searchResultReducer,
 	ownersReducer,
 	filterReducer,
+	idReducer,
 };
