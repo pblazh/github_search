@@ -1,10 +1,9 @@
 *,*>*{
   box-sizing: border-box;
 }
-ul{
-  padding-left: 1em;
-}
-html,body{
+html,body,#root,.appContainer{
+  position: absolute;
+  width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -12,39 +11,32 @@ html,body{
   background: dimgrey;
   background-image: repeating-linear-gradient(-15deg, transparent, transparent 1px, dimgrey 1px, grey 2px);
 }
-#root{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: 0;
-  padding: 0;
-}
+
 .appContainer{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: 0;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.App-logo{
-  height: 5em;
+.App-header{
+  flex-grow: 0;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  background: dimgrey;
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 3px, grey 3px, grey 6px);
 }
-.App-logo img{
-  margin-left: -50px;
-  height: 100px;
-  width: 100px;
-  position: absolute;
-  animation: infinite-rotate infinite 5s linear;
-  height: 80px;
+
+.App-main{
+  display: flex;
+  flex-direction: column;
+  background: white;
 }
-.App-logo img:first-child{
-  opacity: 0.5;
-  animation-duration: 4s;
+
+.App-main>main{
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .App-button:visited,
@@ -86,68 +78,9 @@ html,body{
   background-color: lightgreen;
 }
 
-@keyframes infinite-rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.appContainer{
-  display: flex;
-  flex-direction: column;
-}
-
-.App-header{
-  text-align: center;
-  font-size: 1.3em;
-  font-weight: bold;
-  flex-grow: 0;
-  background: white;
-  font-size: 2em;
-  text-transform: uppercase;
-  background: dimgrey;
-  color: white;
-  background-image: repeating-linear-gradient(-45deg, transparent, transparent 3px, grey 3px, grey 6px);
-}
-
-.App-main{
-  display: flex;
-  flex-direction: column;
-  background: white;
-}
-
-.App-main>main{
-  overflow-y: auto;
-  overflow-x: hidden;
-  text-align: center;
-}
-
-.App-main>main>*{
-  text-align: left;
-}
-
-.App-footer{
-  color: white;
-  min-height: 2em;
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  flex-grow: 0;
-  background: dimgrey;
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 3px, grey 3px, grey 6px);
-}
-
-.App-footer>aside{
-  height: 2em;
-  line-height: 2em;
-  flex-grow: 2;
-  text-align: left;
+.App-main ul{
   padding-left: 1em;
 }
-
-.App-infoblock{
-  padding: 1em;
-}
-
 .App-main dl,
 .App-main dt,
 .App-main dd{
@@ -156,11 +89,17 @@ html,body{
 }
 
 .App-main dt{
-  font-weight: bold;
   display: inline-block;
+  font-weight: bold;
 }
 
 .App-main dd{
   display: inline-block;
   margin: 0 1em;
 }
+
+@keyframes infinite-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+

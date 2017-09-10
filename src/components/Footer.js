@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types';
+// eslint-disable-next-line no-unused-vars
+import style from '../stylesheets/App-footer.css';
 
 const Footer = ({buttons=[]}) => (
 	<footer className='App-footer'>

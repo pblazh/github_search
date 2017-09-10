@@ -1,0 +1,63 @@
+.App-image{
+	text-align: center;
+  background-position: center 23%;
+  background-size: cover;
+	background-image: url(../images/bg.jpg);
+};
+
+@media only screen
+  and (max-device-width: 800px){
+  .App-image{
+    background-image: url('../images/bg_0.5.jpg');
+  }
+}
+
+
+.App-logo{
+  height: 5em;
+	left: '50%',
+}
+
+.App-logo img{
+  margin-left: -50px;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  animation: infinite-rotate infinite 5s linear;
+  height: 80px;
+}
+
+.App-logo img:first-child{
+  opacity: 0.5;
+  animation-duration: 4s;
+}
+
+
+.App-infoblock{
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media only screen
+  and (max-device-width: 800px)
+  and (orientation: landscape) {
+  .App-infoblock{
+    flex-direction: column-reverse;
+  }
+}
+
+.App-infoblockImage{
+  float: right;
+  min-width: 130px;
+  max-width: 320px;
+  width: 35%;
+}
+
+@media (max-device-width: 600px){
+  .App-infoblockImage{
+    display: none;
+  }
+}
+

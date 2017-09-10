@@ -17,7 +17,7 @@ import { Clickable } from '../components/HOC';
 import { withRouter } from 'react-router'
 
 const SearchContainer = ({history, repositories, search, filters, owners, onSearch, onFilter, onSelect}) => (
-	<section className='App-main'>
+	<section className='App-main App-searchpage'>
 		<header>
 			<RequestForm onChange={onSearch} search={search}>
 				{filters && <FilterField what='filter by owner'

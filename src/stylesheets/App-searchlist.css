@@ -1,3 +1,7 @@
+.App-searchpage,
+.App-searchpage main{
+  flex-grow: 1;
+}
 .App-searchlist{
   background-color: lightgrey;
   text-align: center;

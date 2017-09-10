@@ -8,12 +8,12 @@ const outerStyle = {
 }
 
 const style = {
-	left: 0,
-	top: 0,
-	positon: 'absolute',
 	width: 30,
 	lineHeight: '40px',
 	fontSize: 40,
+	position: 'absolute',
+    top: '50%',
+    left: '50%',
 	animationName: 'infinite-rotate',
 	animationDuration: '2s',
 	animationIterationCount: 'infinite',
