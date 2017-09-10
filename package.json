@@ -5,7 +5,6 @@
   "homepage": "http://pblazh.github.io/github_search/",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "lodash-fp": "^0.10.4",
     "normalize.css": "^7.0.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {partial} from 'lodash/fp';
-import {debounce} from 'lodash-fp';
+import {partial, debounce} from 'lodash/fp';
 import FilterField from './FilterField';
 import SearchField from './SearchField';
 // eslint-disable-next-line no-unused-vars
