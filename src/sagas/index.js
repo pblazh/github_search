@@ -8,6 +8,7 @@ import {
 	ownersResult,
 	selectRepository,
 	redirect,
+	filterBy,
 } from '../actions';
 import {
 	SEARCH_REQUEST,
@@ -21,6 +22,7 @@ function* requestSearch(action) {
 	try {
 		const results = yield call(api.searchRequest, action.payload);
 		yield put(searchResult(results));
+		yield put(filterBy({}));
 	} catch (e) {
 		yield put(searchFailed(e.message));
 	}
