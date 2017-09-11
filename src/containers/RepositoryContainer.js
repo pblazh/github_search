@@ -29,7 +29,7 @@ class RepositoryContainer extends (Component){
 }
 
 RepositoryContainer.propTypes = {
-	repository: PropTypes.object.isRequired,
+	repository: PropTypes.object,
 	onEmpty: PropTypes.func.isRequired,
 }
 
