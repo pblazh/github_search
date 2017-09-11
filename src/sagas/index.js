@@ -14,6 +14,7 @@ import {
 	INFO_REQUEST,
 	REDIRECT,
 } from '../actions/types';
+import {mountPoint} from '../config';
 
 function* requestSearch (action){
 	try{
@@ -53,8 +54,7 @@ function* infoSaga(){
 
 function* redirectSaga(){
 	yield takeLatest(REDIRECT, action => {
-		console.log( '--->', action);
-//		document.location = action.payload;
+		document.location = mountPoint + action.payload;
 	});
 }
 

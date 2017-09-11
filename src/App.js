@@ -9,13 +9,15 @@ import SearchContainer from './containers/SearchContainer';
 import RepositoryContainer from './containers/RepositoryContainer';
 
 import reducers from './reducers';
-import searchSaga from './sagas';
+import saga from './sagas';
+
+import {mountPoint} from './config';
 const initialState = require('./data/initial-state');
+
+
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducers, initialState, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(searchSaga);
-
-const mountPoint = process.env.NODE_ENV === 'production' ? '/github_search' : '/';
+sagaMiddleware.run(saga);
 
 export default (props) => (
 	<Provider store={store}>
@@ -30,4 +32,8 @@ export default (props) => (
 		</Router>
 	</Provider>
 );
+
+export{
+	mountPoint
+}
 
