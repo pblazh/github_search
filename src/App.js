@@ -23,11 +23,11 @@ export default (props) => (
 	<Provider store={store}>
 		<Router basename={ mountPoint }>
 			<AppContainer>
-			<Switch>
-				<Route exact path='/' component={ HomeContainer } />
-				<Route exact path='/search' component={ SearchContainer } />
-				<Route path='/:repository' component={ RepositoryContainer } />
-			</Switch>
+				<Switch>
+					<Route exact path='/' component={ HomeContainer } />
+					<Route exact path='/search' component={ SearchContainer } />
+					<Route path='/:repository' component={ RepositoryContainer } />
+				</Switch>
 			</AppContainer>
 		</Router>
 	</Provider>

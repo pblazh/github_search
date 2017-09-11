@@ -43,14 +43,14 @@ export default class RequestForm extends Component{
 		return(
 			<section className='App-requestform'>
 				<FilterField className='App-requestformFilter'
-								what='language'
-								items={ languages }
-								selected={ this.state.language }
-								onChange={ this.onLanguage }/>
+					what='language'
+					items={ languages }
+					selected={ this.state.language }
+					onChange={ this.onLanguage }/>
 
 				<SearchField className='App-requestformFilter'
-								value={ this.state.q || '' }
-								onChange={ this.onQ }/>
+					value={ this.state.q || '' }
+					onChange={ this.onQ }/>
 
 				<aside>{ this.props.children }</aside>
 			</section>

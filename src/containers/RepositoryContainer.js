@@ -36,8 +36,8 @@ RepositoryContainer.propTypes = {
 const mapState2Props = state => (
 	{
 		repository: (state.repository && state.repositories.length)
-					? state.repositories.filter(repository => repository.id === state.repository).pop()
-					: null,
+			? state.repositories.filter(repository => repository.id === state.repository).pop()
+			: null,
 	}
 );
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const star = (score, nth) => (nth < score ? '★' : '☆');
 
 const Score = ({ score }) => (
-  <section> {
+	<section> {
 		[...Array(10).keys()].map(i => star(score / 10, i))
 	} </section>
 );

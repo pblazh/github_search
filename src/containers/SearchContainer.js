@@ -27,13 +27,13 @@ const SearchContainer = ({ history, repositories, search, filters, owners, onSea
 			</RequestForm>
 		</header>
 		<main>
-		{
-			repositories
-			? <SearchList filters={ filters }
+			{
+				repositories
+					? <SearchList filters={ filters }
 						items={ repositories }
 						component={ Clickable(SearchItem, history, onSelect) }/>
-			: <Loading/>
-		}
+					: <Loading/>
+			}
 		</main>
 		<Footer buttons={[
 			{ name: 'home', to:'/' },
@@ -64,8 +64,8 @@ const mapDispatch2Props = dispatch => (
 	{
 		onSearch: value => dispatch(searchRequest(value)),
 		onFilter: value => dispatch(filterBy(value
-												? { ownerId: value.id }
-												: {})),
+			? { ownerId: value.id }
+			: {})),
 		onSelect: (history, props) => {
 			history.push(`/${ props.item.name }`);
 			dispatch(selectRepository(props.item.id));

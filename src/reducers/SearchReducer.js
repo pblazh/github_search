@@ -32,8 +32,8 @@ const ownersReducer = (state = [], action) => {
 };
 
 const idReducer = (state = null, action) => (action.payload
-											? action.payload
-											: state);
+	? action.payload
+	: state);
 
 const filterReducer = requestReducer(FILTER_BY);
 const searchRequestReducer = requestReducer(SEARCH_REQUEST);

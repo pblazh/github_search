@@ -6,8 +6,8 @@ import style from '../stylesheets/App-footer.css';
 
 const Footer = ({ buttons=[] }) => (
 	<footer className='App-footer'>
-	<aside>2017.09.10</aside>
-	{ buttons.map(button => (<Link className='App-button' key={button.to + button.name } to={ button.to }>{ button.name }</Link>))}
+		<aside>2017.09.10</aside>
+		{ buttons.map(button => (<Link className='App-button' key={button.to + button.name } to={ button.to }>{ button.name }</Link>))}
 	</footer>
 );
 
