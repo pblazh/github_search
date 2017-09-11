@@ -6,7 +6,7 @@ import Loading from './Loading';
 // eslint-disable-next-line no-unused-vars
 import style from '../stylesheets/App-repository.css';
 
-const RepositoryInfo = ({repository}) => {
+const RepositoryInfo = ({ repository=null }) => {
 	const rep = Object.assign({
 		description: 'no description',
 	}, repository);
@@ -18,11 +18,11 @@ const RepositoryInfo = ({repository}) => {
 				<aside>
 					<section>Language: { rep.language }</section>
 					<section className='App-RepositoryScore'>
-					{rep.score && <Score score={ rep.score }/>}
+					{ rep.score && <Score score={ rep.score }/> }
 					</section>
 					<section className='App-RepositoryDates'>
-						<DateValue what={'Created by ' + rep.ownerName + ' on: '} date={repository.createdAt}/>
-						<DateValue what='Last updated on: ' date={repository.updatedAt}/>
+						<DateValue what={ `Created by ${rep.ownerName } on: `} date={ repository.createdAt }/>
+						<DateValue what='Last updated on: ' date={ repository.updatedAt }/>
 					</section>
 				</aside>
 					<section className='App-repositoryDescription'>{ rep.description }</section>

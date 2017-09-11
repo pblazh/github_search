@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {where} from '../util';
+import { where } from '../util';
 // eslint-disable-next-line no-unused-vars
 import style from '../stylesheets/App-searchlist.css';
 
-const SearchList = ({filters={}, items, component}) => (
-	<section className='App-searchlist'>
-		{where(filters, items).map(item => (
-			<div  className='App-searchlistItem' key={item.id}>{component({item})}</div>
+const SearchList = ({ filters = {}, items, component }) => (
+  <section className="App-searchlist">
+  {where(filters, items).map(item => (
+  <div className="App-searchlistItem" key={item.id}>{component({ item })}</div>
 		))}
 	</section>
 );

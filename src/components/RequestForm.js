@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {partial, debounce} from 'lodash/fp';
+import { partial, debounce } from 'lodash/fp';
 import FilterField from './FilterField';
 import SearchField from './SearchField';
 // eslint-disable-next-line no-unused-vars
@@ -43,16 +43,16 @@ export default class RequestForm extends Component{
 		return(
 			<section className='App-requestform'>
 				<FilterField className='App-requestformFilter'
-							 what='language'
-							 items={languages}
-							 selected={this.state.language}
-							 onChange={this.onLanguage}/>
+								what='language'
+								items={ languages }
+								selected={ this.state.language }
+								onChange={ this.onLanguage }/>
 
 				<SearchField className='App-requestformFilter'
-							 value={this.state.q || ''}
-							 onChange={this.onQ}/>
+								value={ this.state.q || '' }
+								onChange={ this.onQ }/>
 
-				<aside>{this.props.children}</aside>
+				<aside>{ this.props.children }</aside>
 			</section>
 		);
 	}
@@ -60,5 +60,5 @@ export default class RequestForm extends Component{
 
 RequestForm.propTypes = {
 	onChange: PropTypes.func.isRequired,
+	search: PropTypes.object,
 };
-

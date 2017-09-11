@@ -7,12 +7,12 @@ const date2string = date => [
 	date.getFullYear(),
 ].join('.');
 
-const DateValue = ({what, date}) => (
+const DateValue = ({ what, date }) => (
 	<dl>
-		<dt>{what} </dt>
-		<dd>{date2string(new Date(date))}</dd>
+		<dt>{ what } </dt>
+		<dd>{ date2string(new Date(date)) }</dd>
 	</dl>
-)
+);
 
 DateValue.propTypes = {
 	what: PropTypes.string.isRequired,

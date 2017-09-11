@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import RepositoryInfo from '../components/RepositoryInfo';
 import Footer from '../components/Footer';
 import {
 	infoRequest,
 } from '../actions';
 
-class RepositoryContainer extends(Component){
+class RepositoryContainer extends (Component){
 	componentDidMount(){
 		if(!this.props.repository){
 			this.props.onEmpty(document.location.pathname);
@@ -17,11 +17,11 @@ class RepositoryContainer extends(Component){
 		return (
 			<section className='App-main'>
 				<main>
-					<RepositoryInfo repository={this.props.repository} />
+					<RepositoryInfo repository={ this.props.repository } />
 				</main>
 				<Footer buttons={[
-					{name: 'home', to:'/'},
-					{name: 'search', to:'/search'},
+					{ name: 'home', to: '/' },
+					{ name: 'search', to: '/search' },
 				]}/>
 			</section>
 		);
@@ -29,10 +29,11 @@ class RepositoryContainer extends(Component){
 }
 
 RepositoryContainer.propTypes = {
-	repository: PropTypes.object,
+	repository: PropTypes.object.isRequired,
+	onEmpty: PropTypes.func.isRequired,
 }
 
-const mapState2Props = (state) => (
+const mapState2Props = state => (
 	{
 		repository: (state.repository && state.repositories.length)
 					? state.repositories.filter(repository => repository.id === state.repository).pop()
@@ -42,7 +43,7 @@ const mapState2Props = (state) => (
 
 const mapDispatch2Props = (dispatch) => (
 	{
-		onEmpty: (value) => dispatch(infoRequest(value)),
+		onEmpty: value => dispatch(infoRequest(value)),
 	}
 );
 

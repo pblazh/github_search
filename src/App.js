@@ -11,7 +11,7 @@ import RepositoryContainer from './containers/RepositoryContainer';
 import reducers from './reducers';
 import saga from './sagas';
 
-import {mountPoint} from './config';
+import { mountPoint } from './config';
 const initialState = require('./data/initial-state');
 
 
@@ -21,19 +21,19 @@ sagaMiddleware.run(saga);
 
 export default (props) => (
 	<Provider store={store}>
-		<Router basename={mountPoint}>
+		<Router basename={ mountPoint }>
 			<AppContainer>
 			<Switch>
-				<Route exact path='/' component={HomeContainer} />
-				<Route exact path='/search' component={SearchContainer} />
-				<Route path='/:repository' component={RepositoryContainer} />
+				<Route exact path='/' component={ HomeContainer } />
+				<Route exact path='/search' component={ SearchContainer } />
+				<Route path='/:repository' component={ RepositoryContainer } />
 			</Switch>
 			</AppContainer>
 		</Router>
 	</Provider>
 );
 
-export{
-	mountPoint
+export {
+	mountPoint,
 }
 

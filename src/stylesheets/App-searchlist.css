@@ -14,7 +14,6 @@
   cursor: pointer;
   background-color: white;
   margin: 0.2em;
-  padding: 1em;
   border-radius: 1em;
   border: solid 1px;
   border-color: silver dimgrey dimgrey lightgrey;
@@ -22,7 +21,9 @@
   flex-shrink: 0;
   flex-grow: 1;
 }
-
 .App-searchlistItem:hover{
   border-width: 0px 1px 2px 1px;
+}
+.App-searchlistItem>*{
+  padding: 1em;
 }

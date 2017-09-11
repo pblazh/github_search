@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import logo from '../images/logo.svg';
 import Footer from '../components/Footer';
-import {Link} from 'react-router-dom'
 import glass from '../images/glass.jpg'
 import glass2x from '../images/glass_2x.jpg'
 // eslint-disable-next-line no-unused-vars
@@ -12,8 +12,8 @@ export default () => (
 	<section className='App-main'>
 		<header className='App-image'>
 			<div className="App-logo">
-				<img src={logo} alt="logo" />
-				<img src={logo} alt="" />
+				<img src={ logo } alt="logo" />
+				<img src={ logo } alt="" />
 			</div>
 		</header>
 		<main>
@@ -21,9 +21,10 @@ export default () => (
 				<section>
 					<h3>Requirements:</h3>
 					<img className='App-infoblockImage'
-						srcSet={`${glass},
-								${glass2x} 2x`}
-						src={glass} alt="magnifying glass"/>
+						srcSet={ `${glass },
+								${ glass2x } 2x`}
+						src={ glass }
+						alt="magnifying glass"/>
 
 					<ul>
 						<li>The application should be SPA and use react + redux stack</li>

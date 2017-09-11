@@ -1,6 +1,6 @@
 import React from 'react';
-import DateValue from './DateValue';
 import PropTypes from 'prop-types';
+import DateValue from './DateValue';
 
 const SearchItem = ({item, onSelect=()=>{}}) => (
 	<section onClick={onSelect}>
