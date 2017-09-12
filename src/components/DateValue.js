@@ -14,13 +14,15 @@ const DateValue = ({ what, date }) => (
 	</dl>
 );
 
+export const dateShape = PropTypes.oneOfType([
+	PropTypes.number,
+	PropTypes.string,
+	PropTypes.instanceOf(Date),
+]);
+
 DateValue.propTypes = {
 	what: PropTypes.string.isRequired,
-	date: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.number,
-		PropTypes.instanceOf(Date),
-	]).isRequired,
+	date: dateShape.isRequired,
 };
 
 export default DateValue;

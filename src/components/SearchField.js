@@ -9,6 +9,10 @@ const SearchField = ({ onChange=() => {}, value='' }) => (
 		placeholder='search here'/>
 );
 
+SearchField.defaultProps = {
+	value: '',
+};
+
 SearchField.propTypes = {
 	value: PropTypes.string,
 	onChange: PropTypes.func.isRequired,

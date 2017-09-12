@@ -11,8 +11,17 @@ const Footer = ({ buttons=[] }) => (
 	</footer>
 );
 
+Footer.defaultProps = {
+  buttons: [],
+}
+
 Footer.propTypes = {
-	buttons: PropTypes.array,
+	buttons: PropTypes.arrayOf(
+		PropTypes.shape({
+			to: PropTypes.string,
+			name: PropTypes.string,
+		})
+	),
 };
 
 export default Footer;

@@ -32,8 +32,19 @@ const RepositoryInfo = ({ repository=null }) => {
 		: <Loading/>;
 };
 
+RepositoryInfo.defaultProps = {
+	repository: [],
+};
+
 RepositoryInfo.propTypes = {
-	repository: PropTypes.object,
+	repository: PropTypes.shape({
+		createdAt: PropTypes.string,
+		updatedAt: PropTypes.string,
+		description: PropTypes.string,
+		language: PropTypes.string,
+		score: PropTypes.number,
+		ownerName: PropTypes.string,
+	}),
 };
 
 export default RepositoryInfo;

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DateValue from './DateValue';
+import DateValue, {dateShape} from './DateValue';
 
-const SearchItem = ({item, onSelect=()=>{}}) => (
+const SearchItem = ({item, onSelect=() => {}}) => (
 	<section onClick={onSelect}>
 		<h3>{item.name}</h3>
 		{item.language && <dl><dt>language:</dt><dd>{item.language}</dd></dl>}
@@ -11,8 +11,17 @@ const SearchItem = ({item, onSelect=()=>{}}) => (
 	</section>
 );
 
+SearchItem.defaultProps = {
+	onSelect: () => {},
+};
+
 SearchItem.propTypes = {
-	item: PropTypes.object.isRequired,
+	item: PropTypes.shape({
+		name: PropTypes.string,
+		language: PropTypes.string,
+		createdAt: dateShape,
+		updatedAt: dateShape,
+	}).isRequired,
 	onSelect: PropTypes.func,
 };
 

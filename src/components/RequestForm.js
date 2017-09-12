@@ -26,7 +26,7 @@ export default class RequestForm extends Component{
 				language: null,
 				q: '',
 			},
-			this.props.search
+			this.props.search,
 		);
 	}
 	onChange(){
@@ -58,7 +58,18 @@ export default class RequestForm extends Component{
 	}
 }
 
+RequestForm.defaultProps = {
+	search: {
+		q: '',
+		language: null,
+	},
+};
+
 RequestForm.propTypes = {
+	children: PropTypes.node,
 	onChange: PropTypes.func.isRequired,
-	search: PropTypes.object,
+	search: PropTypes.shape({
+		q: PropTypes.string,
+		language: PropTypes.string,
+	}),
 };

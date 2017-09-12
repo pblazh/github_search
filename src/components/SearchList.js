@@ -15,7 +15,7 @@ const SearchList = ({ filters = {}, items, component }) => (
 SearchList.propTypes = {
 	component: PropTypes.func.isRequired,
 	items: PropTypes.array.isRequired,
-	filter: PropTypes.object,
+	filters: PropTypes.object,
 };
 
 export default SearchList;

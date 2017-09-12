@@ -25,10 +25,23 @@ const FilterField = ({ what='', selected, items, onChange }) => (
 	</label>
 );
 
+FilterField.defaultProps = {
+  what: '',
+}
+
 FilterField.propTypes = {
 	what: PropTypes.string,
-	items: PropTypes.array.isRequired,
+	items: PropTypes.arrayOf(
+		PropTypes.oneOfType([
+			PropTypes.shape({name: PropTypes.string}),
+			PropTypes.string,
+		]),
+	).isRequired,
 	onChange: PropTypes.func.isRequired,
+};
+
+FilterField.defaultProp = {
+	filter: '',
 };
 
 export default FilterField;
