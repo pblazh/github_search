@@ -1,3 +1,4 @@
+import { partial } from 'lodash/fp';
 import React from 'react';
 import { withRouter } from 'react-router'
 import PropTypes from 'prop-types';
@@ -16,14 +17,24 @@ import RequestForm from '../components/RequestForm';
 import Loading from '../components/Loading';
 import { Clickable } from '../components/HOC';
 
-const SearchContainer = ({ history, repositories, search, filters, owners, onSearch, onFilter, onSelect }) => (
+const SearchContainer = ({ history, repositories, search, filters, owners, languages, onSearch, onFilter, onSelect }) => (
 	<section className='App-main App-searchpage'>
 		<header>
 			<RequestForm onChange={ onSearch } search={ search }>
-				{filters && <FilterField what='filter by owner'
-					selected={ where({id: filters.ownerId}, owners).pop() }
-					items={ owners }
-					onChange={ onFilter }/>}
+				{filters && <section className='App-filters'>
+					<b> Filter by </b>
+					<FilterField
+						what='owner'
+						selected={ where({id: filters.ownerId}, owners).pop() }
+						items={ owners }
+						onChange={ partial(onFilter, ['ownerId']) }/>
+					<span> or </span>
+					<FilterField
+						what='language'
+						selected={ where(filters.language ? {id: filters.language} : null, languages).pop() }
+						items={ languages }
+						onChange={ partial(onFilter, ['language']) }/>
+				</section>}
 			</RequestForm>
 		</header>
 		<main>
@@ -56,6 +67,7 @@ const mapState2Props = state => (
 		search: state.searchRequest,
 		repositories: state.repositories,
 		owners: state.owners,
+		languages: state.languages,
 		filters: state.filters,
 	}
 );
@@ -63,8 +75,9 @@ const mapState2Props = state => (
 const mapDispatch2Props = dispatch => (
 	{
 		onSearch: value => dispatch(searchRequest(value)),
-		onFilter: value => dispatch(filterBy(value
-			? { ownerId: value.id }
+		onFilter: (what, value) =>
+			dispatch(filterBy(value
+			? { [what]: value.id }
 			: {})),
 		onSelect: (history, props) => {
 			history.push(`/${ props.item.name }`);

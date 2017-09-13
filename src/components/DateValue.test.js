@@ -7,7 +7,7 @@ import DateValue from './DateValue';
 describe('DateValue', () => {
 	it('should contain definition', () => {
 		const wrapper = shallow(
-			<DateValue what="what" date={new Date(1975, 2, 13)} />,
+			<DateValue what='what' date={new Date(1975, 2, 13)} />,
 		);
 		expect(wrapper.contains(<dt>what </dt>)).toBe(true);
 	});

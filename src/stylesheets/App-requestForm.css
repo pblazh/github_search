@@ -7,11 +7,8 @@
   border-bottom: solid 1px silver;
   background: lightgrey;
 }
-.App-requestform>*{
-  height: 21px;
-  line-height: 21px;
-}
 .App-requestform>aside{
+  border-top: solid 1px silver;
   display: flex;
   flex-grow: 2;
   justify-content: flex-end;

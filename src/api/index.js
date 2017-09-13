@@ -1,7 +1,7 @@
 /* global fetch */
 
 const normalizeResponse = response =>
-	response.items.map((item) => {
+	response.items.map(item => {
 		const {
 			id,
 			full_name: name,

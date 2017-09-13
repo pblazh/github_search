@@ -12,7 +12,7 @@ function getValue (value, items) {
 		: 0;
 }
 
-const FilterField = ({ what='', selected, items, onChange }) => (
+const FilterField = ({ what='', selected=0, items, onChange }) => (
 	<label style={ style }>
 		<span>{ what } </span>
 		<select value={ getValue(selected, items) }
@@ -27,6 +27,7 @@ const FilterField = ({ what='', selected, items, onChange }) => (
 
 FilterField.defaultProps = {
   what: '',
+  selected: 0,
 }
 
 FilterField.propTypes = {

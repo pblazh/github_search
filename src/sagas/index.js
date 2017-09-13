@@ -6,6 +6,7 @@ import {
 	searchResult,
 	searchFailed,
 	ownersResult,
+	languageResult,
 	selectRepository,
 	redirect,
 	filterBy,
@@ -34,12 +35,22 @@ function* ownerSearch(action) {
 	)));
 }
 
-function* searchSaga() {
-	yield takeLatest(SEARCH_REQUEST, requestSearch);
-}
-
 function* ownersSaga() {
 	yield takeEvery(SEARCH_RESULT, ownerSearch);
+}
+
+function* languageSearch(action) {
+	yield put(languageResult(action.payload.map(
+		repository => ({id: repository.language, name: repository.language})
+	)));
+}
+
+function* languagesSaga() {
+	yield takeEvery(SEARCH_RESULT, languageSearch);
+}
+
+function* searchSaga() {
+	yield takeLatest(SEARCH_REQUEST, requestSearch);
 }
 
 function* requestInfo(action) {
@@ -67,6 +78,7 @@ export default function* rootSaga() {
 	yield all([
 		searchSaga(),
 		ownersSaga(),
+		languagesSaga(),
 		infoSaga(),
 		redirectSaga(),
 	]);

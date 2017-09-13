@@ -1,5 +1,11 @@
-import { compose, uniqBy, sortBy } from 'lodash/fp';
-import { SEARCH_REQUEST, SEARCH_RESULT, OWNERS_RESULT, FILTER_BY } from '../actions/types';
+import { compose, uniqBy, sortBy, uniq} from 'lodash/fp';
+import {
+	SEARCH_REQUEST,
+	SEARCH_RESULT,
+	OWNERS_RESULT,
+	LANGUAGE_RESULT,
+	FILTER_BY
+} from '../actions/types';
 
 const requestReducer = REQUEST => (state = '', action) => {
 	if (action.type === REQUEST) {
@@ -31,6 +37,18 @@ const ownersReducer = (state = [], action) => {
 	return state;
 };
 
+const filterEmpty = languages => languages.filter(el => el.name);
+const uniqueLangs = compose(uniqBy(item => item.name), sortBy('name'), filterEmpty);
+
+const languageReducer = (state = [], action) => {
+	if (action.type === LANGUAGE_RESULT) {
+		state = action.payload
+			? uniqueLangs(action.payload)
+			: state;
+	}
+	return state;
+};
+
 const idReducer = (state = null, action) => (action.payload
 	? action.payload
 	: state);
@@ -44,6 +62,7 @@ export {
 	searchRequestReducer,
 	searchResultReducer,
 	ownersReducer,
+	languageReducer,
 	filterReducer,
 	idReducer,
 };
