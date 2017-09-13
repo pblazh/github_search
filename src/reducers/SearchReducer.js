@@ -1,4 +1,4 @@
-import { compose, uniqBy, sortBy, uniq} from 'lodash/fp';
+import { compose, uniqBy, sortBy} from 'lodash/fp';
 import {
 	SEARCH_REQUEST,
 	SEARCH_RESULT,

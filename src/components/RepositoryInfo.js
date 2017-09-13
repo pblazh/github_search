@@ -33,7 +33,7 @@ const RepositoryInfo = ({ repository=null }) => {
 };
 
 RepositoryInfo.defaultProps = {
-	repository: [],
+	repository: null,
 };
 
 RepositoryInfo.propTypes = {
