@@ -4,7 +4,8 @@ import {
 	SEARCH_RESULT,
 	OWNERS_RESULT,
 	LANGUAGE_RESULT,
-	FILTER_BY
+	FILTER,
+	TOGGLE_LOGIC,
 } from '../actions/types';
 
 const requestReducer = REQUEST => (state = '', action) => {
@@ -37,23 +38,30 @@ const ownersReducer = (state = [], action) => {
 	return state;
 };
 
-const filterEmpty = languages => languages.filter(el => el.name);
-const uniqueLangs = compose(uniqBy(item => item.name), sortBy('name'), filterEmpty);
+const filterEmpty = languages => languages.filter(el => Boolean(el.id));
+const uniqueLangs = compose(uniqBy(item => item.id), sortBy('name'), filterEmpty);
 
-const languageReducer = (state = [], action) => {
-	if (action.type === LANGUAGE_RESULT) {
-		state = action.payload
-			? uniqueLangs(action.payload)
-			: state;
-	}
-	return state;
-};
+const languageReducer = (state = [], action) =>
+	(action.type === LANGUAGE_RESULT)
+		? uniqueLangs(action.payload)
+		: state;
 
 const idReducer = (state = null, action) => (action.payload
 	? action.payload
 	: state);
 
-const filterReducer = requestReducer(FILTER_BY);
+const filterReducer = (state = {}, action) =>
+	(action.type === FILTER)
+		? Object.assign({}, state, action.payload)
+		: state;
+
+const logicReducer = (state = {}, action) =>
+	(action.type === TOGGLE_LOGIC)
+		? (state === 'and'
+				? 'or'
+				: 'and')
+		: state;
+
 const searchRequestReducer = requestReducer(SEARCH_REQUEST);
 const searchResultReducer = resultReducer(SEARCH_REQUEST, SEARCH_RESULT);
 
@@ -64,5 +72,6 @@ export {
 	ownersReducer,
 	languageReducer,
 	filterReducer,
+	logicReducer,
 	idReducer,
 };

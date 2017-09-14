@@ -3,6 +3,7 @@
 	"languages": [],
 	"searchRequest": {},
 	"repositories": [],
+	"logic": "and",
 	"filters": {},
 	"repository": null
 }

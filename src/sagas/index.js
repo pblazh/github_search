@@ -9,7 +9,7 @@ import {
 	languageResult,
 	selectRepository,
 	redirect,
-	filterBy,
+	filter,
 } from '../actions';
 import {
 	SEARCH_REQUEST,
@@ -23,7 +23,7 @@ function* requestSearch(action) {
 	try {
 		const results = yield call(api.searchRequest, action.payload);
 		yield put(searchResult(results));
-		yield put(filterBy({}));
+		yield put(filter({}));
 	} catch (e) {
 		yield put(searchFailed(e.message));
 	}

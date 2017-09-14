@@ -4,25 +4,29 @@ import {
 	SEARCH_FAILED,
 	OWNERS_RESULT,
 	LANGUAGE_RESULT,
-	FILTER_BY,
+	FILTER,
+	TOGGLE_LOGIC,
 	SELECT_REPOSITORY,
 	INFO_REQUEST,
 	REDIRECT,
 } from './types';
 
-function action(type, payload) {
-	return {
-		type,
-		payload,
-	};
+function makeAction(type) {
+	return (payload) => (
+		{
+			type,
+			payload,
+		}
+	)
 }
 
-export const searchRequest = payload => action(SEARCH_REQUEST, payload);
-export const searchResult = payload => action(SEARCH_RESULT, payload);
-export const searchFailed = payload => action(SEARCH_FAILED, payload);
-export const ownersResult = payload => action(OWNERS_RESULT, payload);
-export const languageResult = payload => action(LANGUAGE_RESULT, payload);
-export const filterBy = payload => action(FILTER_BY, payload);
-export const selectRepository = payload => action(SELECT_REPOSITORY, payload);
-export const infoRequest = payload => action(INFO_REQUEST, payload);
-export const redirect = payload => action(REDIRECT, payload);
+export const searchRequest = makeAction(SEARCH_REQUEST);
+export const searchResult = makeAction(SEARCH_RESULT);
+export const searchFailed = makeAction(SEARCH_FAILED);
+export const ownersResult = makeAction(OWNERS_RESULT);
+export const languageResult = makeAction(LANGUAGE_RESULT);
+export const filter = makeAction(FILTER);
+export const toggleLogic = makeAction(TOGGLE_LOGIC);
+export const selectRepository = makeAction(SELECT_REPOSITORY);
+export const infoRequest = makeAction(INFO_REQUEST);
+export const redirect = makeAction(REDIRECT);
