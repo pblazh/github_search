@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { partial, debounce } from 'lodash/fp';
+import { connect } from 'react-redux';
+import { uniqWith, debounce, partial} from 'lodash/fp';
 import FilterField from './FilterField';
 import SearchField from './SearchField';
 // eslint-disable-next-line no-unused-vars
 import style from '../stylesheets/App-requestForm.css';
 
-const languages = [
-	'javaScript',
-	'python',
+const LANGUAGES = [
+	'JavaScript',
+	'Python',
 	'C',
-	'lisp',
-	'java',
+	'Lisp',
+	'Java',
 ];
 
-export default class RequestForm extends Component{
+const mergeLanguages = (...languages) => {
+	languages = languages
+		.reduce((prev, cur) => prev.concat(cur), [])
+		.sort();
+	languages = uniqWith((a, b) => a.toLowerCase() === b.toLowerCase(), languages);
+	return  languages;
+}
+
+class RequestForm extends Component{
 	constructor(props){
 		super(props);
 		this.onLanguage = partial(this.onFieldChange, ['language']).bind(this);
@@ -44,7 +53,7 @@ export default class RequestForm extends Component{
 			<section className='App-requestform'>
 				<FilterField className='App-requestformFilter'
 					what='language'
-					items={ languages }
+					items={ mergeLanguages(LANGUAGES, this.props.languages) }
 					selected={ this.state.language }
 					onChange={ this.onLanguage }/>
 
@@ -73,3 +82,11 @@ RequestForm.propTypes = {
 		language: PropTypes.string,
 	}),
 };
+
+const mapState2Props = state => (
+	{
+		languages: state.languages.map(language => language.id),
+	}
+);
+
+export default connect(mapState2Props)(RequestForm);
