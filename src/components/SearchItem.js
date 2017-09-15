@@ -6,8 +6,8 @@ const SearchItem = ({item}) => (
 	<section>
 		<h3>{item.name}</h3>
 		{item.language && <dl><dt>language:</dt><dd>{item.language}</dd></dl>}
-		<DateValue what='created: ' date={item.createdAt}/>
-		<DateValue what='updated: ' date={item.updatedAt}/>
+		<DateValue what='created: ' date={item.createdAt} />
+		<DateValue what='updated: ' date={item.updatedAt} />
 	</section>
 );
 

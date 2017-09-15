@@ -1,9 +1,9 @@
-import { partial, identity } from 'lodash/fp';
+import {partial, identity} from 'lodash/fp';
 import React from 'react';
-import { withRouter } from 'react-router';
+import {withRouter} from 'react-router';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { which } from '../util';
+import {connect} from 'react-redux';
+import {which} from '../util';
 import {
 	searchRequest,
 	filter,
@@ -17,25 +17,25 @@ import SearchItem from '../components/SearchItem';
 import RequestForm from '../components/RequestForm';
 import LogicalContainer from '../containers/LogicalContainer';
 import Loading from '../components/Loading';
-import { Clickable } from '../components/HOC';
+import {Clickable} from '../components/HOC';
 
-const SearchContainer = ({ history, repositories, search, filters, owners, languages, logic, onSearch, onFilter, onSelect, onLogic }) => (
+const SearchContainer = ({history, repositories, search, filters, owners, languages, logic, onSearch, onFilter, onSelect, onLogic}) => (
 	<section className='App-main App-searchpage'>
 		<header>
-			<RequestForm onChange={ onSearch } search={ search }>
+			<RequestForm onChange={onSearch} search={search}>
 				{filters && <section className='App-filters'>
 					<b > Filter by </b>
-					<LogicalContainer logic={ logic } onToggle={ onLogic }>
+					<LogicalContainer logic={logic} onToggle={onLogic}>
 						<FilterField
 							what='owner'
-							selected={ which({id: filters.ownerId}, owners) }
-							items={ owners }
-							onChange={ partial(onFilter, ['ownerId']) }/>
+							selected={which({id: filters.ownerId}, owners)}
+							items={owners}
+							onChange={partial(onFilter, ['ownerId'])} />
 						<FilterField
 							what='language'
-							selected={ which(filters.language ? {id: filters.language} : null, languages)}
-							items={ languages }
-							onChange={ partial(onFilter, ['language']) }/>
+							selected={which(filters.language ? {id: filters.language} : null, languages)}
+							items={languages}
+							onChange={partial(onFilter, ['language'])} />
 					</LogicalContainer>
 				</section>}
 			</RequestForm>
@@ -43,32 +43,37 @@ const SearchContainer = ({ history, repositories, search, filters, owners, langu
 		<main>
 			{
 				repositories
-					? <SearchList filters={ filters }
-						logic={ logic }
-						items={ repositories }
-						component={ Clickable(SearchItem, history, onSelect) }/>
-					: <Loading/>
+					? <SearchList
+						filters={filters}
+						logic={logic}
+						items={repositories}
+						component={Clickable(SearchItem, history, onSelect)} />
+					: <Loading />
 			}
 		</main>
 		<Footer buttons={[
-			{ name: 'home', to:'/' },
-		]}/>
+			{name: 'home', to: '/'},
+		]} />
 	</section>
 );
 
 SearchContainer.defaultProps = {
   repositories: [],
   filters: {},
+  logic: 'and',
+  search: {},
   owners: [],
   onFilter: identity,
   onSelect: identity,
   onLogic: identity,
-}
+};
 
 SearchContainer.propTypes = {
 	history: PropTypes.object.isRequired,
 	repositories: PropTypes.array,
 	filters: PropTypes.object,
+	search: PropTypes.object,
+	logic: PropTypes.string,
 	languages: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired,
@@ -94,11 +99,10 @@ const mapState2Props = state => (
 const mapDispatch2Props = dispatch => (
 	{
 		onSearch: value => dispatch(searchRequest(value)),
-		onLogic: value => dispatch(toggleLogic()),
-		onFilter: (what, value) =>
-			dispatch( filter({ [what]: value ? value.id : value })),
+		onLogic: () => dispatch(toggleLogic()),
+		onFilter: (what, value) => dispatch(filter({[what]: value ? value.id : value})),
 		onSelect: (history, props) => {
-			history.push(`/${ props.item.name }`);
+			history.push(`/${props.item.name}`);
 			dispatch(selectRepository(props.item.id));
 		},
 	}

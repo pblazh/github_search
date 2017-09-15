@@ -1,32 +1,38 @@
-import React, { Component } from 'react';
+/* global document */
+
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import RepositoryInfo from '../components/RepositoryInfo';
 import Footer from '../components/Footer';
 import {
 	infoRequest,
 } from '../actions';
 
-class RepositoryContainer extends (Component){
-	componentDidMount(){
-		if(!this.props.repository){
+class RepositoryContainer extends (Component) {
+	componentDidMount() {
+		if (!this.props.repository) {
 			this.props.onEmpty(document.location.pathname);
 		}
 	}
-	render(){
+	render() {
 		return (
 			<section className='App-main'>
 				<main>
-					<RepositoryInfo repository={ this.props.repository } />
+					<RepositoryInfo repository={this.props.repository} />
 				</main>
 				<Footer buttons={[
-					{ name: 'home', to: '/' },
-					{ name: 'search', to: '/search' },
-				]}/>
+					{name: 'home', to: '/'},
+					{name: 'search', to: '/search'},
+				]} />
 			</section>
 		);
 	}
 }
+
+RepositoryContainer.defaultProps = {
+  repository: null,
+};
 
 RepositoryContainer.propTypes = {
 	repository: PropTypes.object,
@@ -41,7 +47,7 @@ const mapState2Props = state => (
 	}
 );
 
-const mapDispatch2Props = (dispatch) => (
+const mapDispatch2Props = dispatch => (
 	{
 		onEmpty: value => dispatch(infoRequest(value)),
 	}

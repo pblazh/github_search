@@ -1,8 +1,16 @@
 {
-    "extends": "react-app",
+    "extends": "eslint-config-airbnb",
     "rules": {
-        "indent": ["warn", "tab"],
+        "indent": 0,
         "no-tabs": 0,
+        "no-confusing-arrow": 0,
+        "object-curly-spacing": 0,
+        "react/jsx-curly-spacing": 0,
+        "react/jsx-indent-props": 0,
+        "jsx-quotes": ["error", "prefer-single"],
+        "react/jsx-filename-extension": 0,
         "react/jsx-indent": 0,
+        "jsx-a11y/href-no-hash": "off",
+        "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }]
     }
 }

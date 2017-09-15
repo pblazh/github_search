@@ -1,7 +1,7 @@
 /* global fetch */
 
 const normalizeResponse = response =>
-	response.items.map(item => {
+	(response.items.map(item => {
 		const {
 			id,
 			full_name: name,
@@ -19,7 +19,8 @@ const normalizeResponse = response =>
 		return {
 			id, name, url, description, language, score, createdAt, updatedAt, ownerId, ownerName,
 		};
-	});
+	}
+));
 
 const isOK = response => (
 	response.status === 200 ? response : Promise.reject(`Request status: ${response.status}`)

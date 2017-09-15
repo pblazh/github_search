@@ -17,7 +17,7 @@ function makeAction(type) {
 			type,
 			payload,
 		}
-	)
+	);
 }
 
 export const searchRequest = makeAction(SEARCH_REQUEST);

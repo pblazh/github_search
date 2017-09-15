@@ -4,7 +4,7 @@ import { requestReducer, idReducer, ownersReducer } from './SearchReducer';
 import { ownersResult } from '../actions';
 
 const payload = {};
-const action = payload => ({ type: 0, payload });
+const action = pd => ({ type: 0, payload: pd });
 
 describe('reducers', () => {
 	describe('requestReducer', () => {

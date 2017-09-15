@@ -20,7 +20,7 @@ const FilterField = ({ what='', selected=0, items, onChange }) => (
 			<option key={ 0 } value={ 0 }>Any</option>
 			{items.map((item, index) =>
 				(<option key={ JSON.stringify(item) } value={ index + 1 }>{ item.name || item }</option>)
-			)}
+			)},
 		</select>
 	</label>
 );
@@ -32,6 +32,7 @@ FilterField.defaultProps = {
 
 FilterField.propTypes = {
 	what: PropTypes.string,
+	selected: PropTypes.number,
 	items: PropTypes.arrayOf(
 		PropTypes.oneOfType([
 			PropTypes.shape({name: PropTypes.string}),

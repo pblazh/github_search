@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { uniqWith, debounce, partial} from 'lodash/fp';
+import {connect} from 'react-redux';
+import {uniqWith, debounce, partial} from 'lodash/fp';
 import FilterField from './FilterField';
 import SearchField from './SearchField';
 // eslint-disable-next-line no-unused-vars
@@ -20,11 +20,11 @@ const mergeLanguages = (...languages) => {
 		.reduce((prev, cur) => prev.concat(cur), [])
 		.sort();
 	languages = uniqWith((a, b) => a.toLowerCase() === b.toLowerCase(), languages);
-	return  languages;
-}
+	return languages;
+};
 
 class RequestForm extends Component{
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.onLanguage = partial(this.onFieldChange, ['language']).bind(this);
 		this.onQ = partial(this.onFieldChange, ['q']).bind(this);
@@ -38,36 +38,38 @@ class RequestForm extends Component{
 			this.props.search,
 		);
 	}
-	onChange(){
+	onChange() {
 		this.props.onChange(this.state);
 	}
 
-	onFieldChange(field, value){
+	onFieldChange(field, value) {
 		this.setState({
 			[field]: value,
 		}, () => this.onChange(this.state));
 	}
 
-	render (){
-		return(
+	render () {
+		return (
 			<section className='App-requestform'>
 				<FilterField className='App-requestformFilter'
 					what='language'
-					items={ mergeLanguages(LANGUAGES, this.props.languages) }
-					selected={ this.state.language }
-					onChange={ this.onLanguage }/>
+					items={mergeLanguages(LANGUAGES, this.props.languages)}
+					selected={this.state.language}
+					onChange={this.onLanguage} />
 
-				<SearchField className='App-requestformFilter'
-					value={ this.state.q || '' }
-					onChange={ this.onQ }/>
+				<SearchField
+					className='App-requestformFilter'
+					value={this.state.q || ''}
+					onChange={this.onQ} />
 
-				<aside>{ this.props.children }</aside>
+				<aside>{this.props.children}</aside>
 			</section>
 		);
 	}
 }
 
 RequestForm.defaultProps = {
+	languages: PropTypes.arrayOf(PropTypes.string),
 	search: {
 		q: '',
 		language: null,
@@ -75,6 +77,10 @@ RequestForm.defaultProps = {
 };
 
 RequestForm.propTypes = {
+	languages: PropTypes.arrayOf(PropTypes.shape({
+		id: PropTypes.string,
+		name: PropTypes.string,
+	})),
 	children: PropTypes.node,
 	onChange: PropTypes.func.isRequired,
 	search: PropTypes.shape({

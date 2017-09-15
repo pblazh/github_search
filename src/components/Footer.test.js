@@ -14,8 +14,8 @@ describe('Footer', () => {
 			]} />,
 		);
 
-		expect(wrapper.contains(<Link className="App-button" to="to0">name0</Link>)).toBeFalsy();
-		expect(wrapper.contains(<Link className="App-button" to="to1">name1</Link>)).toBeTruthy();
-		expect(wrapper.contains(<Link className="App-button" to="to2">name2</Link>)).toBeTruthy();
+		expect(wrapper.contains(<Link className='App-button' to='to0'>name0</Link>)).toBeFalsy();
+		expect(wrapper.contains(<Link className='App-button' to='to1'>name1</Link>)).toBeTruthy();
+		expect(wrapper.contains(<Link className='App-button' to='to2'>name2</Link>)).toBeTruthy();
 	});
 });

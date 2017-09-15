@@ -8,7 +8,7 @@ describe('SearchField', () => {
 	it('should call onChange', () => {
 		const onChange = jest.fn();
 		const wrapper = shallow(
-			<SearchField value="hello" onChange={onChange} />,
+			<SearchField value='hello' onChange={onChange} />,
 		);
 		wrapper.find('input').simulate('change', { target: { value: 'world' } });
 

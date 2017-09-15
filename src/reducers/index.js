@@ -6,7 +6,7 @@ import {
 	languageReducer,
 	filterReducer,
 	logicReducer,
-	idReducer
+	idReducer,
 } from './SearchReducer';
 
 const rootReducer = combineReducers({
