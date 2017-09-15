@@ -1,8 +1,8 @@
 /* global describe, it, expect */
 
 import React from 'react';
-import SearchField from './SearchField';
 import { shallow } from 'enzyme';
+import SearchField from './SearchField';
 
 describe('SearchField', () => {
 	it('should call onChange', () => {

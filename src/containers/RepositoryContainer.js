@@ -11,7 +11,7 @@ class RepositoryContainer extends (Component){
 	componentDidMount(){
 		if(!this.props.repository){
 			this.props.onEmpty(document.location.pathname);
-		};
+		}
 	}
 	render(){
 		return (
@@ -31,7 +31,7 @@ class RepositoryContainer extends (Component){
 RepositoryContainer.propTypes = {
 	repository: PropTypes.object,
 	onEmpty: PropTypes.func.isRequired,
-}
+};
 
 const mapState2Props = state => (
 	{

@@ -7,7 +7,7 @@ import style from '../stylesheets/App-searchlist.css';
 const filter = (logic, filters, items) =>
 					logic === 'and'
 					? where(filters, items)
-					: any(filters, items)
+					: any(filters, items);
 
 const SearchList = ({ filters = {}, logic, items, component }) => (
 	<section className="App-searchlist">
@@ -16,6 +16,11 @@ const SearchList = ({ filters = {}, logic, items, component }) => (
 		))}
 	</section>
 );
+
+SearchList.defaultProps = {
+  filters: {},
+  logic: 'and',
+}
 
 SearchList.propTypes = {
 	component: PropTypes.func.isRequired,

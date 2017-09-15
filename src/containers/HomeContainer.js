@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
 import Footer from '../components/Footer';
-import glass from '../images/glass.jpg'
-import glass2x from '../images/glass_2x.jpg'
+import glass from '../images/glass.jpg';
+import glass2x from '../images/glass_2x.jpg';
 // eslint-disable-next-line no-unused-vars
 import style from '../stylesheets/App-infoblock.css';
 

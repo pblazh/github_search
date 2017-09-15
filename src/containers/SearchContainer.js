@@ -1,6 +1,6 @@
-import { partial } from 'lodash/fp';
+import { partial, identity } from 'lodash/fp';
 import React from 'react';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { which } from '../util';
@@ -56,14 +56,28 @@ const SearchContainer = ({ history, repositories, search, filters, owners, langu
 	</section>
 );
 
+SearchContainer.defaultProps = {
+  repositories: [],
+  filters: {},
+  owners: [],
+  onFilter: identity,
+  onSelect: identity,
+  onLogic: identity,
+}
+
 SearchContainer.propTypes = {
 	history: PropTypes.object.isRequired,
 	repositories: PropTypes.array,
 	filters: PropTypes.object,
+	languages: PropTypes.arrayOf(PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		name: PropTypes.string.isRequired,
+	})),
 	owners: PropTypes.array,
 	onSearch: PropTypes.func.isRequired,
 	onFilter: PropTypes.func,
 	onSelect: PropTypes.func,
+	onLogic: PropTypes.func,
 };
 
 const mapState2Props = state => (
@@ -77,7 +91,7 @@ const mapState2Props = state => (
 	}
 );
 
-const mapDispatch2Props = (dispatch, state) => (
+const mapDispatch2Props = dispatch => (
 	{
 		onSearch: value => dispatch(searchRequest(value)),
 		onLogic: value => dispatch(toggleLogic()),

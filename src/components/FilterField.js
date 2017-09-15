@@ -28,7 +28,7 @@ const FilterField = ({ what='', selected=0, items, onChange }) => (
 FilterField.defaultProps = {
   what: '',
   selected: 0,
-}
+};
 
 FilterField.propTypes = {
 	what: PropTypes.string,

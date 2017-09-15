@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const SearchField = ({ onChange=() => {}, value='' }) => (
 	<input type='text'
-		ref={ (node) => {node && node.focus(); }}
+		ref={ node => {node && node.focus(); }}
 		onChange={ (evt) => onChange(evt.target.value) }
 		value={ value }
 		placeholder='search here'/>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const divider = (index, logic, onClick) => index
 										? (<a className='App-button-small'
@@ -8,7 +9,7 @@ const divider = (index, logic, onClick) => index
 											</a>)
 										: [];
 
-export default ({ logic, onToggle, children }) => (
+const LogicalContainer = ({ logic, onToggle, children }) => (
 	<span className='App-logicalContainer'>
 		{
 			children.reduce((acc, item, index) =>
@@ -16,3 +17,11 @@ export default ({ logic, onToggle, children }) => (
 		}
 	</span>
 );
+
+LogicalContainer.propTypes = {
+	logic: PropTypes.string.isRequired,
+	onToggle: PropTypes.func.isRequired,
+	children: PropTypes.node.isRequired,
+};
+
+export default LogicalContainer;

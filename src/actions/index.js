@@ -12,7 +12,7 @@ import {
 } from './types';
 
 function makeAction(type) {
-	return (payload) => (
+	return payload => (
 		{
 			type,
 			payload,
