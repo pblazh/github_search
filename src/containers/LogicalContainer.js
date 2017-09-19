@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 const divider = (index, logic, onClick) => index
 										? (<a
 											className='App-button-small'
+											role='button'
+											tabIndex={index}
 											key={index}
 											onClick={onClick}>
 												{logic}
 											</a>)
 										: [];
 
-const LogicalContainer = ({logic, onToggle, children}) => (
+const LogicalContainer = ({ logic, onToggle, children }) => (
 	<span className='App-logicalContainer'>
 		{
 			children.reduce((acc, item, index) =>

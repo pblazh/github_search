@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {uniqWith, debounce, partial} from 'lodash/fp';
+import { connect } from 'react-redux';
+import { uniqWith, debounce, partial } from 'lodash/fp';
 import FilterField from './FilterField';
 import SearchField from './SearchField';
 // eslint-disable-next-line no-unused-vars
@@ -16,14 +16,14 @@ const LANGUAGES = [
 ];
 
 const mergeLanguages = (...languages) => {
-	languages = languages
+	let sortedLanguages = languages
 		.reduce((prev, cur) => prev.concat(cur), [])
 		.sort();
-	languages = uniqWith((a, b) => a.toLowerCase() === b.toLowerCase(), languages);
-	return languages;
+	sortedLanguages = uniqWith((a, b) => a.toLowerCase() === b.toLowerCase(), sortedLanguages);
+	return sortedLanguages;
 };
 
-class RequestForm extends Component{
+class RequestForm extends Component {
 	constructor(props) {
 		super(props);
 		this.onLanguage = partial(this.onFieldChange, ['language']).bind(this);
@@ -48,10 +48,11 @@ class RequestForm extends Component{
 		}, () => this.onChange(this.state));
 	}
 
-	render () {
+	render() {
 		return (
 			<section className='App-requestform'>
-				<FilterField className='App-requestformFilter'
+				<FilterField
+					className='App-requestformFilter'
 					what='language'
 					items={mergeLanguages(LANGUAGES, this.props.languages)}
 					selected={this.state.language}
@@ -69,6 +70,7 @@ class RequestForm extends Component{
 }
 
 RequestForm.defaultProps = {
+	children: null,
 	languages: PropTypes.arrayOf(PropTypes.string),
 	search: {
 		q: '',

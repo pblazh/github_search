@@ -1,8 +1,8 @@
 /* global document */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import RepositoryInfo from '../components/RepositoryInfo';
 import Footer from '../components/Footer';
 import {
@@ -22,8 +22,8 @@ class RepositoryContainer extends (Component) {
 					<RepositoryInfo repository={this.props.repository} />
 				</main>
 				<Footer buttons={[
-					{name: 'home', to: '/'},
-					{name: 'search', to: '/search'},
+					{ icon: '\u2302', name: 'home', to: '/' },
+					{ icon: '\u2315', name: 'search', to: '/search' },
 				]} />
 			</section>
 		);
@@ -35,7 +35,7 @@ RepositoryContainer.defaultProps = {
 };
 
 RepositoryContainer.propTypes = {
-	repository: PropTypes.object,
+	repository: RepositoryInfo.propTypes.repository,
 	onEmpty: PropTypes.func.isRequired,
 };
 

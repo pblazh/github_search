@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DateValue, {dateShape} from './DateValue';
+import DateValue, { dateShape } from './DateValue';
 
-const SearchItem = ({item}) => (
+const SearchItem = ({ item }) => (
 	<section>
 		<h3>{item.name}</h3>
 		{item.language && <dl><dt>language:</dt><dd>{item.language}</dd></dl>}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
 import Footer from '../components/Footer';
 import glass from '../images/glass.jpg';
@@ -20,7 +20,8 @@ export default () => (
 			<section className='App-infoblock'>
 				<section>
 					<h3>Requirements:</h3>
-					<img className='App-infoblockImage'
+					<img
+						className='App-infoblockImage'
 						srcSet={`${glass},
 								${glass2x} 2x`}
 						src={glass}

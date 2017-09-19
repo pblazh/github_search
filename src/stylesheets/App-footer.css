@@ -17,3 +17,14 @@
   padding-left: 1em;
 }
 
+.App-button-icon{
+  margin: 0 0.5em;
+  font-weight: bold;
+}
+
+@media only screen
+  and (max-width: 300px){
+  .App-button-label{
+    display: none;
+  }
+}

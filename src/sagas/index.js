@@ -41,7 +41,10 @@ function* ownersSaga() {
 
 function* languageSearch(action) {
 	yield put(languageResult(action.payload.map(
-		repository => ({id: repository.language, name: repository.language})
+		repository => ({
+			id: repository.language,
+			name: repository.language,
+		}),
 	)));
 }
 

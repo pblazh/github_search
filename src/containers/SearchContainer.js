@@ -1,9 +1,9 @@
-import {partial, identity} from 'lodash/fp';
+import { partial, identity } from 'lodash/fp';
 import React from 'react';
-import {withRouter} from 'react-router';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {which} from '../util';
+import { connect } from 'react-redux';
+import { which } from '../util';
 import {
 	searchRequest,
 	filter,
@@ -14,12 +14,16 @@ import Footer from '../components/Footer';
 import FilterField from '../components/FilterField';
 import SearchList from '../components/SearchList';
 import SearchItem from '../components/SearchItem';
+import SearchField from '../components/SearchField';
 import RequestForm from '../components/RequestForm';
 import LogicalContainer from '../containers/LogicalContainer';
 import Loading from '../components/Loading';
-import {Clickable} from '../components/HOC';
+import { Clickable } from '../components/HOC';
+import RepositoryInfo from '../components/RepositoryInfo';
 
-const SearchContainer = ({history, repositories, search, filters, owners, languages, logic, onSearch, onFilter, onSelect, onLogic}) => (
+
+// eslint-disable-next-line max-len
+const SearchContainer = ({ history, repositories, search, filters, owners, languages, logic, onSearch, onFilter, onSelect, onLogic }) => (
 	<section className='App-main App-searchpage'>
 		<header>
 			<RequestForm onChange={onSearch} search={search}>
@@ -28,12 +32,12 @@ const SearchContainer = ({history, repositories, search, filters, owners, langua
 					<LogicalContainer logic={logic} onToggle={onLogic}>
 						<FilterField
 							what='owner'
-							selected={which({id: filters.ownerId}, owners)}
-							items={owners}
-							onChange={partial(onFilter, ['ownerId'])} />
+							selected={ which({ id: filters.ownerId }, owners) }
+							items={ owners}
+							onChange={partial(onFilter, ['ownerId']) } />
 						<FilterField
 							what='language'
-							selected={which(filters.language ? {id: filters.language} : null, languages)}
+							selected={which(filters.language ? { id: filters.language } : null, languages)}
 							items={languages}
 							onChange={partial(onFilter, ['language'])} />
 					</LogicalContainer>
@@ -52,13 +56,14 @@ const SearchContainer = ({history, repositories, search, filters, owners, langua
 			}
 		</main>
 		<Footer buttons={[
-			{name: 'home', to: '/'},
+			{ icon: '\u2302', name: 'home', to: '/' },
 		]} />
 	</section>
 );
 
 SearchContainer.defaultProps = {
   repositories: [],
+  languages: [],
   filters: {},
   logic: 'and',
   search: {},
@@ -69,16 +74,22 @@ SearchContainer.defaultProps = {
 };
 
 SearchContainer.propTypes = {
-	history: PropTypes.object.isRequired,
-	repositories: PropTypes.array,
+	history: PropTypes.shape({
+		push: PropTypes.func,
+	}).isRequired,
+	repositories: PropTypes.arrayOf(RepositoryInfo.propTypes.repository),
+	// eslint-disable-next-line react/forbid-prop-types
 	filters: PropTypes.object,
-	search: PropTypes.object,
+	search: SearchField.propTypes,
 	logic: PropTypes.string,
 	languages: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired,
 	})),
-	owners: PropTypes.array,
+	owners: PropTypes.arrayOf(PropTypes.shape({
+		id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+		name: PropTypes.string,
+	})),
 	onSearch: PropTypes.func.isRequired,
 	onFilter: PropTypes.func,
 	onSelect: PropTypes.func,
@@ -100,7 +111,7 @@ const mapDispatch2Props = dispatch => (
 	{
 		onSearch: value => dispatch(searchRequest(value)),
 		onLogic: () => dispatch(toggleLogic()),
-		onFilter: (what, value) => dispatch(filter({[what]: value ? value.id : value})),
+		onFilter: (what, value) => dispatch(filter({ [what]: value ? value.id : value })),
 		onSelect: (history, props) => {
 			history.push(`/${props.item.name}`);
 			dispatch(selectRepository(props.item.id));

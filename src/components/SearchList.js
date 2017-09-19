@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {where, any} from '../util';
+import { where, any } from '../util';
 // eslint-disable-next-line no-unused-vars
 import style from '../stylesheets/App-searchlist.css';
 
@@ -9,10 +9,10 @@ const filter = (logic, filters, items) =>
 					? where(filters, items)
 					: any(filters, items);
 
-const SearchList = ({filters = {}, logic, items, component}) => (
+const SearchList = ({ filters = {}, logic, items, component }) => (
 	<section className='App-searchlist'>
 		{filter(logic, filters, items).map(item => (
-			<div className='App-searchlistItem' key={item.id}>{component({item})}</div>
+			<div className='App-searchlistItem' key={item.id}>{component({ item })}</div>
 		))}
 	</section>
 );
@@ -32,6 +32,7 @@ SearchList.propTypes = {
 				]),
 			}),
 		).isRequired,
+// eslint-disable-next-line react/forbid-prop-types
 	filters: PropTypes.object,
 	logic: PropTypes.oneOf(['and', 'or']),
 };

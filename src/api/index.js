@@ -1,26 +1,26 @@
 /* global fetch */
 
-const normalizeResponse = response =>
-	(response.items.map(item => {
-		const {
-			id,
-			full_name: name,
-			html_url: url,
-			created_at: createdAt,
-			updated_at: updatedAt,
-			description,
-			language,
-			score,
-			owner: {
-				id: ownerId,
-				login: ownerName,
-			},
-		} = item;
-		return {
-			id, name, url, description, language, score, createdAt, updatedAt, ownerId, ownerName,
-		};
-	}
-));
+function normalizeItem(item) {
+	const {
+		id,
+		full_name: name,
+		html_url: url,
+		created_at: createdAt,
+		updated_at: updatedAt,
+		description,
+		language,
+		score,
+		owner: {
+			id: ownerId,
+			login: ownerName,
+		},
+	} = item;
+	return {
+		id, name, url, description, language, score, createdAt, updatedAt, ownerId, ownerName,
+	};
+}
+
+const normalizeResponse = response => response.items.map(normalizeItem);
 
 const isOK = response => (
 	response.status === 200 ? response : Promise.reject(`Request status: ${response.status}`)

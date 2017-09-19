@@ -6,7 +6,7 @@ import Loading from './Loading';
 // eslint-disable-next-line no-unused-vars
 import style from '../stylesheets/App-repository.css';
 
-const RepositoryInfo = ({repository = null}) => {
+const RepositoryInfo = ({ repository = null }) => {
 	const rep = Object.assign({
 		description: 'no description',
 	}, repository);

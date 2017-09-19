@@ -9,6 +9,8 @@
   background: #aaaaaa;
   padding: 0.1em;
   display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
 }
 .App-RepositoryDates{
   color: grey;
