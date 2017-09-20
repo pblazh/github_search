@@ -44,7 +44,7 @@ FilterField.propTypes = {
 	what: PropTypes.string,
 	selected: PropTypes.oneOfType([
 		PropTypes.number,
-		PropTypes.Object,
+		PropTypes.object,
 	]),
 	items: PropTypes.arrayOf(
 		PropTypes.oneOfType([
