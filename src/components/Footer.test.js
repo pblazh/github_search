@@ -16,7 +16,9 @@ describe('Footer', () => {
 
 
 		expect(wrapper.contains(<Link className='App-button' to='to0'>name0</Link>)).toBeFalsy();
+		// eslint-disable-next-line max-len
 		expect(wrapper.contains(<Link className='App-button' to='to1'><span className='App-button-label'>name1</span></Link>)).toBeTruthy();
+		// eslint-disable-next-line max-len
 		expect(wrapper.contains(<Link className='App-button' to='to2'><span className='App-button-label'>name2</span></Link>)).toBeTruthy();
 	});
 });

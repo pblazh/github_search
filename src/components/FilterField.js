@@ -16,23 +16,23 @@ function getValue(value, items) {
 const FilterField = ({ what = '', selected = 0, items, onChange }) => {
 	const id = uniqid();
 	return (
-	<label style={ style } htmlFor={id}>
-		<span>{ what } </span>
-		<select
-			id={id}
-			value={ getValue(selected, items) }
-			onChange={ evt => onChange(items[parseInt(evt.target.value, 10) - 1]) }>
-			<option key={ 0 } value={ 0 }>Any</option>
-			{items.map((item, index) =>
-				(<option
-					key={ JSON.stringify(item) }
-					value={ index + 1 }>
-					{ item.name || item }
-				</option>),
-			)},
-		</select>
-	</label>
-);
+		<label style={ style } htmlFor={id}>
+			<span>{ what } </span>
+			<select
+				id={id}
+				value={ getValue(selected, items) }
+				onChange={ evt => onChange(items[parseInt(evt.target.value, 10) - 1]) }>
+				<option key={ 0 } value={ 0 }>Any</option>
+				{items.map((item, index) =>
+					(<option
+						key={ JSON.stringify(item) }
+						value={ index + 1 }>
+						{ item.name || item }
+					</option>),
+				)},
+			</select>
+		</label>
+	);
 };
 
 FilterField.defaultProps = {
@@ -42,7 +42,10 @@ FilterField.defaultProps = {
 
 FilterField.propTypes = {
 	what: PropTypes.string,
-	selected: PropTypes.number,
+	selected: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.Object,
+	]),
 	items: PropTypes.arrayOf(
 		PropTypes.oneOfType([
 			PropTypes.shape({ name: PropTypes.string }),

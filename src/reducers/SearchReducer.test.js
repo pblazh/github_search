@@ -1,6 +1,6 @@
 /* global describe, it, expect */
 
-import { requestReducer, idReducer, ownersReducer } from './SearchReducer';
+import { requestReducer, ownersReducer } from './SearchReducer';
 import { ownersResult } from '../actions';
 
 const payload = {};
@@ -14,17 +14,6 @@ describe('reducers', () => {
 		});
 		it('should pass payload', () => {
 			const state = requestReducer(0)('', action(payload));
-			expect(state).toBe(payload);
-		});
-	});
-
-	describe('idReducer', () => {
-		it('should not check type', () => {
-			const state = idReducer('', action(payload));
-			expect(state).toBe(payload);
-		});
-		it('should pass payload', () => {
-			const state = idReducer('', action(payload));
 			expect(state).toBe(payload);
 		});
 	});

@@ -14,7 +14,7 @@ import Footer from '../components/Footer';
 import FilterField from '../components/FilterField';
 import SearchList from '../components/SearchList';
 import SearchItem from '../components/SearchItem';
-import SearchField from '../components/SearchField';
+import { shape as SearchFieldShape } from '../components/SearchField';
 import RequestForm from '../components/RequestForm';
 import LogicalContainer from '../containers/LogicalContainer';
 import Loading from '../components/Loading';
@@ -37,7 +37,7 @@ const SearchContainer = ({ history, repositories, search, filters, owners, langu
 							onChange={partial(onFilter, ['ownerId']) } />
 						<FilterField
 							what='language'
-							selected={which(filters.language ? { id: filters.language } : null, languages)}
+							selected={which(filters.language ? { id: filters.language } : 0, languages)}
 							items={languages}
 							onChange={partial(onFilter, ['language'])} />
 					</LogicalContainer>
@@ -80,7 +80,7 @@ SearchContainer.propTypes = {
 	repositories: PropTypes.arrayOf(RepositoryInfo.propTypes.repository),
 	// eslint-disable-next-line react/forbid-prop-types
 	filters: PropTypes.object,
-	search: SearchField.propTypes,
+	search: SearchFieldShape,
 	logic: PropTypes.string,
 	languages: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.string.isRequired,

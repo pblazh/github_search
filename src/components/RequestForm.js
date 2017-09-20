@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { uniqWith, debounce, partial } from 'lodash/fp';
+import { uniqWith, debounce, partial, identity } from 'lodash/fp';
 import FilterField from './FilterField';
 import SearchField from './SearchField';
 // eslint-disable-next-line no-unused-vars
@@ -54,14 +54,14 @@ class RequestForm extends Component {
 				<FilterField
 					className='App-requestformFilter'
 					what='language'
-					items={mergeLanguages(LANGUAGES, this.props.languages)}
-					selected={this.state.language}
-					onChange={this.onLanguage} />
+					items={ mergeLanguages(LANGUAGES, this.props.languages) }
+					selected={ this.state.language }
+					onChange={ this.onLanguage } />
 
 				<SearchField
 					className='App-requestformFilter'
-					value={this.state.q || ''}
-					onChange={this.onQ} />
+					value={ this.state.q || '' }
+					onChange={ this.onQ } />
 
 				<aside>{this.props.children}</aside>
 			</section>
@@ -71,18 +71,16 @@ class RequestForm extends Component {
 
 RequestForm.defaultProps = {
 	children: null,
-	languages: PropTypes.arrayOf(PropTypes.string),
+	languages: LANGUAGES,
 	search: {
 		q: '',
 		language: null,
 	},
+	onChange: identity,
 };
 
 RequestForm.propTypes = {
-	languages: PropTypes.arrayOf(PropTypes.shape({
-		id: PropTypes.string,
-		name: PropTypes.string,
-	})),
+	languages: PropTypes.arrayOf(PropTypes.string),
 	children: PropTypes.node,
 	onChange: PropTypes.func.isRequired,
 	search: PropTypes.shape({

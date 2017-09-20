@@ -6,11 +6,11 @@ import {
 	languageReducer,
 	filterReducer,
 	logicReducer,
-	idReducer,
+	selectRepositoryReducer,
 } from './SearchReducer';
 
 const rootReducer = combineReducers({
-	repository: idReducer,
+	repository: selectRepositoryReducer,
 	logic: logicReducer,
 	filters: filterReducer,
 	owners: ownersReducer,

@@ -6,6 +6,7 @@ import {
 	LANGUAGE_RESULT,
 	FILTER,
 	TOGGLE_LOGIC,
+	SELECT_REPOSITORY,
 } from '../actions/types';
 
 const requestReducer = REQUEST => (state = '', action) => {
@@ -46,10 +47,6 @@ const languageReducer = (state = [], action) =>
 		? uniqueLangs(action.payload)
 		: state;
 
-const idReducer = (state = null, action) => (action.payload
-	? action.payload
-	: state);
-
 const filterReducer = (state = {}, action) =>
 	(action.type === FILTER)
 		? Object.assign({}, state, action.payload)
@@ -64,6 +61,7 @@ const logicReducer = (state = {}, action) =>
 
 const searchRequestReducer = requestReducer(SEARCH_REQUEST);
 const searchResultReducer = resultReducer(SEARCH_REQUEST, SEARCH_RESULT);
+const selectRepositoryReducer = requestReducer(SELECT_REPOSITORY);
 
 export {
 	requestReducer,
@@ -73,5 +71,5 @@ export {
 	languageReducer,
 	filterReducer,
 	logicReducer,
-	idReducer,
+	selectRepositoryReducer,
 };
