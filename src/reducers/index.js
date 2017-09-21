@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import {
 	searchRequestReducer,
 	searchResultReducer,
+	searchFailedReducer,
 	ownersReducer,
 	languageReducer,
 	filterReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
 	languages: languageReducer,
 	searchRequest: searchRequestReducer,
 	repositories: searchResultReducer,
+	error: searchFailedReducer,
 });
 
 export default rootReducer;

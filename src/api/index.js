@@ -28,7 +28,7 @@ const isOK = response => (
 
 function searchRequest(what) {
 	if (!what.q) {
-		return Promise.reject('Impropper request');
+		throw new Error('Impropper request');
 	}
 	const request = `q=${what.q}`;
 	const params = Object.keys(what)

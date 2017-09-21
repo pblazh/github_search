@@ -2,6 +2,7 @@ import { compose, uniqBy, sortBy } from 'lodash/fp';
 import {
 	SEARCH_REQUEST,
 	SEARCH_RESULT,
+	SEARCH_FAILED,
 	OWNERS_RESULT,
 	LANGUAGE_RESULT,
 	FILTER,
@@ -61,12 +62,14 @@ const logicReducer = (state = {}, action) =>
 
 const searchRequestReducer = requestReducer(SEARCH_REQUEST);
 const searchResultReducer = resultReducer(SEARCH_REQUEST, SEARCH_RESULT);
+const searchFailedReducer = resultReducer(SEARCH_REQUEST, SEARCH_FAILED);
 const selectRepositoryReducer = requestReducer(SELECT_REPOSITORY);
 
 export {
 	requestReducer,
 	searchRequestReducer,
 	searchResultReducer,
+	searchFailedReducer,
 	ownersReducer,
 	languageReducer,
 	filterReducer,

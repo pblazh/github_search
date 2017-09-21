@@ -43,6 +43,7 @@ FilterField.defaultProps = {
 FilterField.propTypes = {
 	what: PropTypes.string,
 	selected: PropTypes.oneOfType([
+		PropTypes.string,
 		PropTypes.number,
 		PropTypes.object,
 	]),

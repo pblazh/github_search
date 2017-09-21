@@ -11,6 +11,7 @@ import {
 	selectRepository,
 } from '../actions';
 import Footer from '../components/Footer';
+import Error from '../components/Error';
 import FilterField from '../components/FilterField';
 import SearchList from '../components/SearchList';
 import SearchItem from '../components/SearchItem';
@@ -23,7 +24,7 @@ import RepositoryInfo from '../components/RepositoryInfo';
 
 
 // eslint-disable-next-line max-len
-const SearchContainer = ({ history, repositories, search, filters, owners, languages, logic, onSearch, onFilter, onSelect, onLogic }) => (
+const SearchContainer = ({ error, history, repositories, search, filters, owners, languages, logic, onSearch, onFilter, onSelect, onLogic }) => (
 	<section className='App-main App-searchpage'>
 		<header>
 			<RequestForm onChange={onSearch} search={search}>
@@ -46,13 +47,16 @@ const SearchContainer = ({ history, repositories, search, filters, owners, langu
 		</header>
 		<main>
 			{
-				repositories
+				error
+				? <Error message={error} />
+				: (repositories
 					? <SearchList
 						filters={filters}
 						logic={logic}
 						items={repositories}
 						component={Clickable(SearchItem, history, onSelect)} />
 					: <Loading />
+				)
 			}
 		</main>
 		<Footer buttons={[
@@ -62,6 +66,7 @@ const SearchContainer = ({ history, repositories, search, filters, owners, langu
 );
 
 SearchContainer.defaultProps = {
+  error: null,
   repositories: [],
   languages: [],
   filters: {},
@@ -81,6 +86,7 @@ SearchContainer.propTypes = {
 	// eslint-disable-next-line react/forbid-prop-types
 	filters: PropTypes.object,
 	search: SearchFieldShape,
+	error: PropTypes.string,
 	logic: PropTypes.string,
 	languages: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.string.isRequired,
@@ -104,6 +110,7 @@ const mapState2Props = state => (
 		languages: state.languages,
 		filters: state.filters,
 		logic: state.logic,
+		error: state.error,
 	}
 );
 
