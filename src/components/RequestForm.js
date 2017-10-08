@@ -17,6 +17,7 @@ const LANGUAGES = [
 
 const mergeLanguages = (...languages) => {
 	let sortedLanguages = languages
+		.map(language => Array.isArray(language) ? language : language.toJS())
 		.reduce((prev, cur) => prev.concat(cur), [])
 		.sort();
 	sortedLanguages = uniqWith((a, b) => a.toLowerCase() === b.toLowerCase(), sortedLanguages);
@@ -91,7 +92,7 @@ RequestForm.propTypes = {
 
 const mapState2Props = state => (
 	{
-		languages: state.languages.map(language => language.id),
+		languages: state.get('languages').map(language => language.id),
 	}
 );
 

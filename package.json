@@ -5,6 +5,7 @@
   "homepage": "https://pblazh.github.io/github_search/",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "imutable": "0.0.1",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
     "prop-types": "^15.5.10",
@@ -15,6 +16,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.12",
     "redux": "^3.7.2",
+    "redux-immutable": "^4.0.0",
     "redux-saga": "^0.15.6",
     "uniqid": "^4.1.1"
   },
