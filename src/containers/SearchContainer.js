@@ -19,7 +19,7 @@ import { shape as SearchFieldShape } from '../components/SearchField';
 import RequestForm from '../components/RequestForm';
 import LogicalContainer from '../containers/LogicalContainer';
 import Loading from '../components/Loading';
-import { Clickable } from '../components/HOC';
+import { Clickable, toJS } from '../components/HOC';
 import RepositoryInfo from '../components/RepositoryInfo';
 
 
@@ -104,13 +104,13 @@ SearchContainer.propTypes = {
 
 const mapState2Props = state => (
 	{
-		search: state.searchRequest,
-		repositories: state.repositories,
-		owners: state.owners,
-		languages: state.languages,
-		filters: state.filters,
-		logic: state.logic,
-		error: state.error,
+		search: state.get('searchRequest'),
+		repositories: state.get('repositories'),
+		owners: state.get('owners'),
+		languages: state.get('languages'),
+		filters: state.get('filters'),
+		logic: state.get('logic'),
+		error: state.get('error'),
 	}
 );
 
@@ -126,4 +126,4 @@ const mapDispatch2Props = dispatch => (
 	}
 );
 
-export default withRouter(connect(mapState2Props, mapDispatch2Props)(SearchContainer));
+export default withRouter(connect(mapState2Props, mapDispatch2Props)(toJS(SearchContainer)));

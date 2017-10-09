@@ -1,4 +1,5 @@
 import { compose, uniqBy, sortBy } from 'lodash/fp';
+import { fromJS } from 'immutable';
 import {
 	SEARCH_REQUEST,
 	SEARCH_RESULT,
@@ -13,7 +14,7 @@ import {
 const requestReducer = REQUEST => (state = '', action) => {
 	if (action.type === REQUEST) {
 		return action.payload
-			? action.payload
+			? fromJS(action.payload)
 			: state;
 	}
 	return state;
@@ -24,7 +25,7 @@ const resultReducer = (REQUEST, RESULT) => (state = [], action) => {
 		return null;
 	} else if (action.type === RESULT) {
 		return action.payload
-			? action.payload
+			? fromJS(action.payload)
 			: state;
 	}
 	return state;
@@ -34,7 +35,7 @@ const uniqueNames = compose(uniqBy(item => item.id), sortBy('name'));
 const ownersReducer = (state = [], action) => {
 	if (action.type === OWNERS_RESULT) {
 		return action.payload
-			? uniqueNames(action.payload)
+			? fromJS(uniqueNames(action.payload))
 			: state;
 	}
 	return state;
@@ -50,7 +51,7 @@ const languageReducer = (state = [], action) =>
 
 const filterReducer = (state = {}, action) =>
 	(action.type === FILTER)
-		? Object.assign({}, state, action.payload)
+		? fromJS(Object.assign({}, state.toJS(), action.payload))
 		: state;
 
 const logicReducer = (state = {}, action) =>
