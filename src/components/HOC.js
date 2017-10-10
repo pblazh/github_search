@@ -5,7 +5,7 @@ export const toJS = WrappedComponent => wrappedComponentProps => {
   const KEY = 0
   const VALUE = 1
 
-console.log( wrappedComponentProps);
+//console.log( wrappedComponentProps);
 
   const propsJS = Object.entries(
     wrappedComponentProps
@@ -18,7 +18,7 @@ console.log( wrappedComponentProps);
 	  //console.log( newProps);
     return newProps
   }, {})
-	console.log('>>>>', propsJS);
+//	console.log('>>>>', propsJS);
   return <WrappedComponent {...propsJS} />
 }
 

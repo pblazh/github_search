@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { toJS } from '../components/HOC';
 import RepositoryInfo from '../components/RepositoryInfo';
 import Footer from '../components/Footer';
 import {
@@ -41,9 +42,8 @@ RepositoryContainer.propTypes = {
 
 const mapState2Props = state => (
 	{
-		repository: (state.repository && state.repositories.length)
-			? state.repositories.filter(repository => repository.id === state.repository).pop()
-			: null,
+		repository:
+			state.get('repositories').filter(repository => repository.get('id') === state.get('repository')).last()
 	}
 );
 
@@ -53,4 +53,4 @@ const mapDispatch2Props = dispatch => (
 	}
 );
 
-export default connect(mapState2Props, mapDispatch2Props)(RepositoryContainer);
+export default connect(mapState2Props, mapDispatch2Props)(toJS(RepositoryContainer));
