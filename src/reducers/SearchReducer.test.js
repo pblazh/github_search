@@ -32,7 +32,7 @@ describe('reducers', () => {
 				{ id: 1, name: 'c' },
 			];
 			const state = ownersReducer('', ownersResult(owners));
-			expect(state).toMatchObject(expected);
+			expect(state.toJS()).toMatchObject(expected);
 		});
 	});
 });
