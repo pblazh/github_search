@@ -49,10 +49,21 @@ const languageReducer = (state = [], action) =>
 		? uniqueLangs(action.payload)
 		: state;
 
-const filterReducer = (state = {}, action) =>
-	(action.type === FILTER)
-		? fromJS(Object.assign({}, state.toJS(), action.payload))
-		: state;
+const containsFilter = filter =>
+	Object.values(filter).every(x => x);
+
+const filterReducer = (state = {}, action) =>{
+	if(action.type === FILTER){
+		if(action.payload){
+			return fromJS(Object.assign({}, state.toJS(), action.payload));
+		}else if(action.payload && containsFilter(action.payload)){
+			return state;
+		}else{
+			return fromJS({});
+		}
+	}
+	return state;
+};
 
 const logicReducer = (state = {}, action) =>
 	(action.type === TOGGLE_LOGIC)

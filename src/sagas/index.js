@@ -23,7 +23,7 @@ function* requestSearch(action) {
 	try {
 		const results = yield call(api.searchRequest, action.payload);
 		yield put(searchResult(results));
-		yield put(filter({}));
+		yield put(filter(null));
 	} catch (e) {
 		yield put(searchFailed(e.message));
 	}

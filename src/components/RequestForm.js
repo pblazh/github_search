@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { uniqWith, debounce, partial, identity } from 'lodash/fp';
+import { toJS } from '../components/HOC';
 import FilterField from './FilterField';
 import SearchField from './SearchField';
 // eslint-disable-next-line no-unused-vars
@@ -96,4 +97,4 @@ const mapState2Props = state => (
 	}
 );
 
-export default connect(mapState2Props)(RequestForm);
+export default connect(mapState2Props)(toJS(RequestForm));
